@@ -11,8 +11,8 @@ export default async function Home() {
   const info = await getInfo();
 
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <Placeholder news={news[0]} info={info[0]} />
-    </main>
+    </div>
   );
 }

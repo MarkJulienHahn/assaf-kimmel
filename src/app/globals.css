@@ -49,16 +49,13 @@
 
 html,
 body {
-  max-width: 100vw;
+  /* max-width: 100vw; */
   overflow-x: hidden;
 }
 
 body {
   color: var(--foreground-rgb);
   background: var(--background-rgb);
-}
-
-main {
   font-family: "Protest";
   font-variation-settings: "wght" 130;
   font-size: var(--PG-font-size);
@@ -66,7 +63,6 @@ main {
   letter-spacing: var(--PG-letter-spacing);
   word-spacing: var(--PG-word-spacing);
 }
-
 a {
   color: inherit;
   text-decoration: none;

@@ -1,7 +1,6 @@
 import styles from "./placeholder.module.css";
 
 const PlaceholderContact = ({ info }) => {
-  console.log(info);
 
   return (
     <div className={styles.contactWrapper}>

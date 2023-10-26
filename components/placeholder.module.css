@@ -3,8 +3,11 @@
   background: var(--widget-color);
   padding: var(--space-S);
   backdrop-filter: blur(20px);
-  height: calc(100vh - 2 * var(--space-S));
+  /* height: calc(100vh - 2 * var(--space-S));   */
   border-radius: var(--widget-border-radius);
+  transition: all 0.5s ease;
+  position: fixed;
+  max-width: calc(100vw - 30px);
 }
 
 .header {
@@ -26,7 +29,7 @@
 }
 
 .textBox {
-  width: 400px;
+  width: clamp(0px, 400px, 100%);
   padding-top: var(--space-M);
 }
 
@@ -59,6 +62,11 @@
 }
 
 .date {
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
   padding-top: var(--space-S);
 }
 
@@ -97,6 +105,11 @@
 
 /* INFO */
 
+.infoContent {
+  animation: fadeIn 0.2s ease-in;
+  width: clamp(0px, 400px, 100vw);
+}
+
 .infoText {
   padding: var(--space-M) 0 var(--space-S);
   width: clamp(0px, 400px, 100%);
@@ -131,7 +144,7 @@
 }
 
 @media screen and (max-width: 600px) {
-  /* .textBox {
-    height: 
-  } */
+.content, .infoContent, .contactWrapper {
+  width: calc(100vw - 60px);
+}
 }

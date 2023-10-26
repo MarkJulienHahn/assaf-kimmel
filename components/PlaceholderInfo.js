@@ -5,7 +5,7 @@ import styles from "./placeholder.module.css";
 
 const PlaceholderInfo = ({ info }) => {
   return (
-    <div className={styles.content}>
+    <div className={styles.infoContent}>
       <div className={styles.infoText}>
         <PortableText content={info.text} />
       </div>
