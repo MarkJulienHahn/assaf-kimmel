@@ -9,8 +9,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const PlaceholderNews = ({ news }) => {
-  const [swiperHeight, setSwiperHeight] = useState < number > 0;
-  const [swiperIndex, setSwiperIndex] = useState < number > 0;
+  const [swiperHeight, setSwiperHeight] = useState(0);
+  const [swiperIndex, setSwiperIndex] = useState(0);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
 
