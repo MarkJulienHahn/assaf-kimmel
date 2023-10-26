@@ -50,7 +50,7 @@ const SwiperInner = ({
           imageHeight * image.asset.metadata.dimensions.aspectRatio <
           windowWidth
             ? imageHeight
-            : mobileImageWidth / image.asset.metadata.dimensions.aspectRatio
+            : mobileImageWidth / 1.6
         }
         width={
           imageHeight * image.asset.metadata.dimensions.aspectRatio <
@@ -60,7 +60,11 @@ const SwiperInner = ({
         }
         alt={image.alt}
         style={{
-          objectFit: "contain",
+          objectFit:
+            imageHeight * image.asset.metadata.dimensions.aspectRatio <
+            windowWidth
+              ? "contain"
+              : "cover",
           objectPosition: "top",
           background: image.asset.metadata.palette.vibrant.background,
         }}
