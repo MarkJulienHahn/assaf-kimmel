@@ -10,12 +10,8 @@ import PortableText from "react-portable-text";
 
 import News from "../types"
 
-type Content = "news" | "info";
-
 const Placeholder = ({ news, info }) => {
-  const [content, setContent] = useState<Content>("news");
-
-  console.log(news);
+  const [content, setContent] = useState("news");
 
   return (
     <div className={styles.wrapper}>
