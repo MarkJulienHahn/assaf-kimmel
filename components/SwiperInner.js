@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./placeholder.module.css";
 import { useSwiper } from "swiper/react";
 import { useSwiperSlide } from "swiper/react";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const SwiperInner = ({
   image,
@@ -15,6 +16,12 @@ const SwiperInner = ({
 }) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
+
+  const { windowWidth, windowHeight } = useWindowDimensions();
+
+  const ref = useRef();
+  const mobileImageWidth = windowWidth - 60;
+  const imageHeight = windowHeight - swiperHeight - 120;
 
   useEffect(() => {
     swiperSlide.isActive && setSwiperIndex(i);
@@ -32,19 +39,32 @@ const SwiperInner = ({
     <div
       className={styles.imageWrapper}
       style={{
-        height: `calc(100vh - ${swiperHeight}px - 120px)`,
-        width: `calc((100vh - ${swiperHeight}px - 120px) * ${image.asset.metadata.dimensions.aspectRatio})`,
-        maxWidth: "100vw",
-        background: image.asset.metadata.palette.vibrant.background
+        maxWidth: "calc(100vw - 2*var(--space-S))",
+        maxHeight: ref.current?.clientHeight,
       }}
       onClick={() => swiper.slideNext()}
-
     >
       <Image
         src={image.asset.url}
-        fill
+        height={
+          imageHeight * image.asset.metadata.dimensions.aspectRatio <
+          windowWidth
+            ? imageHeight
+            : mobileImageWidth / image.asset.metadata.dimensions.aspectRatio
+        }
+        width={
+          imageHeight * image.asset.metadata.dimensions.aspectRatio <
+          windowWidth
+            ? imageHeight * image.asset.metadata.dimensions.aspectRatio
+            : mobileImageWidth
+        }
         alt={image.alt}
-        style={{ objectFit: "contain" }}
+        style={{
+          objectFit: "contain",
+          objectPosition: "top",
+          background: image.asset.metadata.palette.vibrant.background,
+        }}
+        ref={ref}
       />
     </div>
   );

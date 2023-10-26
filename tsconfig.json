@@ -25,7 +25,7 @@
   "files": [
     "@types/block-content-to-react.d.ts"
   ],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/schemas/index.js", "src/app/admin/layout.js", "components/PlaceholderNews.js", "components/PlaceholderInfo.js", "components/Placeholder.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/schemas/index.js", "src/app/admin/layout.js", "components/PlaceholderNews.js", "components/PlaceholderInfo.js", "components/Placeholder.js", "sanity/schemas/info.js", "components/SwiperInner.js"],
   "exclude": ["node_modules"]
 }
 

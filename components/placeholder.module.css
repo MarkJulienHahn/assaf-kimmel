@@ -105,3 +105,9 @@
 .infoText p:not(:first-child) {
   text-indent: var(--space-L);
 }
+
+@media screen and (max-width: 600px) {
+  /* .textBox {
+    height: 
+  } */
+}
