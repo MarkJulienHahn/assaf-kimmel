@@ -108,10 +108,13 @@
 .infoContent {
   animation: fadeIn 0.2s ease-in;
   width: clamp(0px, 400px, 100vw);
+  max-height: calc(100vh - 80px);
+  overflow: scroll;
+  margin-top: 5px;
 }
 
 .infoText {
-  padding: var(--space-M) 0 var(--space-S);
+  padding: 25px 0 var(--space-S);
   width: clamp(0px, 400px, 100%);
 }
 
