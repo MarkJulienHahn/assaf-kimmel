@@ -1,0 +1,107 @@
+.wrapper {
+  margin: var(--space-S);
+  background: var(--widget-color);
+  padding: var(--space-S);
+  backdrop-filter: blur(20px);
+  height: calc(100vh - 2 * var(--space-S));
+  border-radius: var(--widget-border-radius);
+}
+
+.header {
+  display: flex;
+}
+
+.header p {
+  margin-right: var(--space-M);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 3px;
+}
+
+.header p:hover {
+  text-decoration: underline 1.7px;
+}
+
+.content {
+  animation: fadeIn 0.2s ease-in;
+}
+
+.textBox {
+  width: 400px;
+  padding-top: var(--space-M);
+}
+
+.index,
+.swiperIndex {
+  width: 100px;
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
+}
+
+.swiperIndex {
+  padding-top: var(--space-S);
+  line-height: 1;
+}
+
+.headline {
+  display: flex;
+}
+
+.text {
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
+  padding-top: var(--space-S);
+}
+
+.date {
+  padding-top: var(--space-S);
+}
+
+.swiperWrapper {
+  padding-top: var(--space-S);
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.swiperControls {
+  position: absolute;
+  display: flex;
+  left: 0;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+}
+
+.swiperControls div {
+  width: 50%;
+  height: 100%;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* INFO */
+
+.infoText {
+  padding: var(--space-M) 0 var(--space-S);
+  width: clamp(0px, 400px, 100%);
+}
+
+.infoText p:not(:first-child) {
+  text-indent: var(--space-L);
+}
