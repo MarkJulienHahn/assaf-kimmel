@@ -14,6 +14,6 @@ export async function getNews() {
 
 export async function getInfo() {
   return client.fetch(
-    groq`*[_type == "info"]{"image": image{alt, "asset": asset->{...}}, text}`
+    groq`*[_type == "info"]{"image": image{alt, "asset": asset->{...}}, text, contact, links}`
   );
 }
