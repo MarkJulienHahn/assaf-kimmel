@@ -21,7 +21,8 @@
 }
 
 .header p:hover {
-  text-decoration: underline 1.7px;
+  text-decoration: underline;
+  text-decoration-thickness: 1.7px;
 }
 
 .content {
@@ -122,6 +123,10 @@
   text-indent: var(--space-L);
 }
 
+.infoText p {
+  padding-right: 10px;
+}
+
 /* CONTACT */
 
 .contactWrapper {
@@ -147,7 +152,9 @@
 }
 
 @media screen and (max-width: 600px) {
-.content, .infoContent, .contactWrapper {
-  width: calc(100vw - 60px);
-}
+  .content,
+  .infoContent,
+  .contactWrapper {
+    width: calc(100vw - 60px);
+  }
 }

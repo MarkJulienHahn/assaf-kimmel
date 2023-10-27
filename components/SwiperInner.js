@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./placeholder.module.css";
 import { useSwiper } from "swiper/react";
@@ -13,6 +13,7 @@ const SwiperInner = ({
   i,
   prev,
   next,
+  setControls,
 }) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
@@ -34,6 +35,12 @@ const SwiperInner = ({
   useEffect(() => {
     prev && swiperIndex == i && swiper.slidePrev();
   }, [prev]);
+
+  useEffect(() => {
+    imageHeight * image.asset.metadata.dimensions.aspectRatio < windowWidth
+      ? setControls(true)
+      : setControls(false);
+  }, [windowWidth]);
 
   return (
     <div

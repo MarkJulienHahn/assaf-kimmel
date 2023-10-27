@@ -13,6 +13,7 @@ const PlaceholderNews = ({ news }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
+  const [controls, setControls] = useState(true);
 
   const ref = useRef();
 
@@ -41,32 +42,31 @@ const PlaceholderNews = ({ news }) => {
       </div>
 
       <div className={styles.swiperWrapper}>
-        <div
-          className={styles.swiperControls}
-          style={{
-            height: `calc(100vh - ${swiperHeight}px - 120px)`,
-            maxWidth: "calc(100vw - 4*var(--space-S)",
-          }}
-        >
+        {controls ? (
           <div
-            onClick={prevFunction}
-            style={{ cursor: swiperIndex != 1 ? "w-resize" : "default" }}
-          ></div>
-          <div
-            onClick={nextFunction}
+            className={styles.swiperControls}
             style={{
-              cursor:
-                swiperIndex != news.images.length ? "e-resize" : "default",
+              height: `calc(100vh - ${swiperHeight}px - 120px)`,
+              maxWidth: "calc(100vw - 4*var(--space-S)",
             }}
-          ></div>
-        </div>
-        {swiperHeight ? (
-          <Swiper
-            spaceBetween={5}
-            slidesPerView={"auto"}
-            // onSlideChange={() => console.log("slide change")}
-            // onSwiper={(swiper) => console.log(swiper)}
           >
+            <div
+              onClick={prevFunction}
+              style={{ cursor: swiperIndex != 1 ? "w-resize" : "default" }}
+            ></div>
+            <div
+              onClick={nextFunction}
+              style={{
+                cursor:
+                  swiperIndex != news.images.length ? "e-resize" : "default",
+              }}
+            ></div>
+          </div>
+        ) : (
+          ""
+        )}
+        {swiperHeight ? (
+          <Swiper spaceBetween={5} slidesPerView={"auto"}>
             {news.images.map((image, i) => (
               <SwiperSlide key={i}>
                 <SwiperInner
@@ -77,6 +77,7 @@ const PlaceholderNews = ({ news }) => {
                   swiperIndex={swiperIndex}
                   next={next}
                   prev={prev}
+                  setControls={setControls}
                 />
               </SwiperSlide>
             ))}

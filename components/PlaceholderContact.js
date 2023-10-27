@@ -43,7 +43,7 @@ const PlaceholderContact = ({ info }) => {
             <div className={styles.contactRow} key={i}>
               <p className={styles.contactHead}></p>
               <a
-                href={`mailto:${link.link}`}
+                href={link.link}
                 target="_black"
                 rel={"noreferrer"}
               >

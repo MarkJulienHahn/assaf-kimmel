@@ -9,8 +9,6 @@ import PlaceholderInfo from "./PlaceholderInfo";
 import PlaceholderContact from "./PlaceholderContact";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
-import News from "../types";
-
 const Placeholder = ({ news, info }) => {
   const [content, setContent] = useState("news");
   const [widgetDimensions, setWidgetDimensions] = useState({
@@ -32,24 +30,18 @@ const Placeholder = ({ news, info }) => {
     setTimeout(dimensionsFunction, 1000);
   }, [windowWidth, windowHeight, content]);
 
-  console.log(widgetDimensions);
-
   return (
-    <div
-      className={styles.wrapper}
-      // style={{
-      //   height: widgetDimensions.height + 120,
-      //   width: widgetDimensions.width,
-      //   overflow: "hidden",
-      // }}
-    >
+    <div className={styles.wrapper}>
       <div ref={ref}>
         <div className={styles.header}>
           <p
             onClick={() => setContent("news")}
             style={
               content == "news"
-                ? { textDecoration: "underline 1.7px" }
+                ? {
+                    textDecoration: "underline",
+                    textDecorationThickness: "1.7px",
+                  }
                 : { cursor: "pointer" }
             }
           >
