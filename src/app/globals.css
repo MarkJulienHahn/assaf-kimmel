@@ -32,11 +32,9 @@
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
 
-
-
-/* ::-webkit-scrollbar-corner {
-  background: #000;
-} */
+::-webkit-scrollbar-corner {
+  display: none;
+}
 
 * {
   box-sizing: border-box;
@@ -70,7 +68,7 @@ html,
 body {
   /* max-width: 100vw; */
   overflow-x: hidden;
-  scrollbar-width: thin;
+
 }
 
 body {
@@ -85,6 +83,7 @@ body {
   -moz-font-feature-settings: "ss02";
   -webkit-font-feature-settings: "ss02";
   font-feature-settings: "ss02";
+  scrollbar-width: none !important;
 }
 a {
   color: inherit;
