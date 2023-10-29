@@ -23,7 +23,7 @@ const PlaceholderContact = ({ info }) => {
       <br />
       {info.contact?.adressLine1 ? (
         <div className={styles.contactRow}>
-          <p className={styles.contactHead}>Adress</p>
+          <p className={styles.contactHead}>Address</p>
           <p>{info.contact.adressLine1}</p>
         </div>
       ) : (
