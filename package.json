@@ -16,6 +16,8 @@
     "react": "^18",
     "react-div-100vh": "^0.7.0",
     "react-dom": "^18",
+    "react-icons-animated": "^1.0.2",
+    "react-intersection-observer": "^9.5.2",
     "react-portable-text": "^0.6.0",
     "swiper": "^10.3.1"
   },

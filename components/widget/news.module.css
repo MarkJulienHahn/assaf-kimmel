@@ -1,0 +1,52 @@
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+.outer {
+  display: flex;
+  animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  border-bottom: var(--space-S);
+  /* background: red; */
+  /* height: 800px; */
+}
+
+.left {
+  width: 50px;
+}
+.inner {
+  display: flex;
+  /* border: 1px solid red; */
+}
+
+.content {
+  width: 400px;
+}
+
+.date {
+  width: 100px;
+}
+
+.headline,
+.text,
+.images {
+  padding-bottom: var(--space-S);
+}
+
+.date,
+.index,
+.text {
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
+}
+

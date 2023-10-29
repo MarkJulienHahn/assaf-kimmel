@@ -7,7 +7,7 @@ import styles from "./placeholder.module.css";
 import PlaceholderNews from "./PlaceholderNews";
 import PlaceholderInfo from "./PlaceholderInfo";
 import PlaceholderContact from "./PlaceholderContact";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const Placeholder = ({ news, info }) => {
   const [content, setContent] = useState("news");

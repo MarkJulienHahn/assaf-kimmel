@@ -1,7 +1,7 @@
 import PortableText from "react-portable-text";
 import Image from "next/image";
 import { use100vh } from "react-div-100vh";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import styles from "./placeholder.module.css";
 
 const PlaceholderInfo = ({ info }) => {

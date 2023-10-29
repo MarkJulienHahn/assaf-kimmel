@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./placeholder.module.css";
 import { useSwiper } from "swiper/react";
 import { useSwiperSlide } from "swiper/react";
-import useWindowDimensions from "../hooks/useWindowDimensions";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const SwiperInner = ({
   image,

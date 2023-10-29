@@ -1,0 +1,33 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.outer {
+  display: flex;
+  animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  border-bottom: var(--space-S);
+  /* background: red; */
+  /* height: 800px; */
+}
+
+.list {
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.list div {
+  height: 25px;
+  width: 80px;
+}
+
+.list div:last-child {
+    height: 16px;
+}
