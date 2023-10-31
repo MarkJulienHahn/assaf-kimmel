@@ -18,6 +18,12 @@ export default defineType({
       options: { source: "title" },
     },
     {
+      name: "date",
+      title: "Date",
+      type: "date",
+      options: { dateFormat: "MM/YYYY" }
+    },
+    {
       name: "headline",
       title: "Headline",
       type: "array",

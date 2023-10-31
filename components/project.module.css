@@ -1,6 +1,32 @@
 .wrapper {
-    height: 100vh;
-    width: 100vw;
-    background: blue;
-    margin-top: 80vh;
+  height: 100vh;
+  margin-top: 80vh;
+}
+
+.imageWrapper {
+  transition: all 0.5s ease;
+  margin-left: 10px;
+}
+
+.index {
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
+  margin: var(--space-S);
+}
+
+.sliderWrapper {
+  width: 200vw;
+  overflow: scroll;
+  display: flex;
+  transition: all 0.5s ease;
+  margin-top: 80vh;
+  scroll-padding-top: -50px;
+}
+
+.anchor {
+  position: absolute;
+  transform: translateY(calc(-8vh + var(--space-M)));
 }

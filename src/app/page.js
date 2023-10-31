@@ -1,16 +1,15 @@
-import Placeholder from "../../components/placeholder/Placeholder";
 import Main from "../../components/Main";
 import styles from "./home.module.css";
-import { getNews, getInfo } from "../../sanity/sanity-utils";
-
+import { getNews, getAbout, getProjects } from "../../sanity/sanity-utils";
 
 export default async function Home() {
   const news = await getNews();
-  const info = await getInfo();
+  const projects = await getProjects();
+  const about = await getAbout();
 
   return (
     <div className={styles.main}>
-      <Main />
+      <Main projects={projects} news={news} about={about[0]} />
     </div>
   );
 }
