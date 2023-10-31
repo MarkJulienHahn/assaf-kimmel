@@ -52,6 +52,7 @@ const Project = ({ setIndex, project, setWidgetContent }) => {
         <div ref={wrapperRef} style={{ display: "flex" }}>
           {project.images.map((image, i) => (
             <ProjectSwiperInner
+              key={i}
               image={image}
               swiperIndex={swiperIndex}
               setSwiperIndex={setSwiperIndex}
