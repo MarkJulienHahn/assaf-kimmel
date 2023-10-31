@@ -49,7 +49,7 @@ const NewsEntry = ({ i, entry }) => {
                 </div>
                 <Swiper spaceBetween={5} slidesPerView={"auto"}>
                   {entry.images.map((image, i) => (
-                    <SwiperSlide>
+                    <SwiperSlide key={i}>
                       <SwiperInner
                         //   swiperHeight={swiperHeight}
                         image={image}
