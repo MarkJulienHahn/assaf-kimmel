@@ -27,10 +27,11 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
   const [extended, setExtended] = useState(false);
 
   const array = [
-    <Menu setIndex={setIndex} />,
-    <Intro1 setIndex={setIndex} index={index} />,
-    <Intro2 setIndex={setIndex} index={index} />,
+    <Menu key={1} setIndex={setIndex} />,
+    <Intro1 key={2} setIndex={setIndex} index={index} />,
+    <Intro2 key={3} setIndex={setIndex} index={index} />,
     <News
+      key={4}
       setIndex={setIndex}
       index={index}
       news={news}
@@ -38,6 +39,7 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
       setExtended={setExtended}
     />,
     <ProjectWidget
+      key={5}
       setIndex={setIndex}
       index={index}
       widgetContent={widgetContent}
@@ -45,13 +47,14 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
       setExtended={setExtended}
     />,
     <ProjectWidgetFull
+      key={6}
       setIndex={setIndex}
       index={index}
       widgetContent={widgetContent}
     />,
-    <ProjectsOverview setIndex={setIndex} index={index} />,
-    <About setIndex={setIndex} index={index} about={about} />,
-    <Contact setIndex={setIndex} index={index} />,
+    <ProjectsOverview key={7} setIndex={setIndex} index={index} />,
+    <About key={8} setIndex={setIndex} index={index} about={about} />,
+    <Contact key={9} setIndex={setIndex} index={index} />,
   ];
 
   const widgetTransformation = () => {

@@ -22,7 +22,7 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
         {widgetContent.credits ? (
           <div className={styles.projectCredits}>
             {widgetContent.credits.map((entry, i) => (
-              <div className={styles.projectCreditsRow}>
+              <div key={i} className={styles.projectCreditsRow}>
                 <p>{entry.job}:</p>
                 <p>{entry.name}</p>
               </div>
