@@ -7,17 +7,28 @@ import { useInView } from "react-intersection-observer";
 import Widget from "./widget/Widget";
 import Project from "./Project";
 
-const Main = ({ projects, news, about }) => {
-  const [index, setIndex] = useState(7);
+const Main = ({ projects, news, about, contact, slug }) => {
+  const [index, setIndex] = useState(1);
+  const [delay, setDelay] = useState(true);
   const [widgetContent, setWidgetContent] = useState(projects[0]);
+  const [scrollTrigger, setScrollTrigger] = useState("");
 
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
 
+  const delayFct = () => {
+    setDelay(false);
+  };
+
   useEffect(() => {
-    inView && setIndex(3);
+    !delay && inView && setIndex(3);
   }, [inView]);
+
+  useEffect(() => {
+    slug && setScrollTrigger(slug);
+    setTimeout(delayFct, 1000);
+  }, []);
 
   return (
     <div>
@@ -26,7 +37,11 @@ const Main = ({ projects, news, about }) => {
         setIndex={setIndex}
         widgetContent={widgetContent}
         news={news}
+        projects={projects}
         about={about}
+        contact={contact}
+        setScrollTrigger={setScrollTrigger}
+        slug={slug}
       />
       <div
         ref={ref}
@@ -40,10 +55,13 @@ const Main = ({ projects, news, about }) => {
       {projects.map((project, i) => (
         <Project
           key={i}
+          i={i}
           project={project}
           index={index}
           setIndex={setIndex}
           setWidgetContent={setWidgetContent}
+          scrollTrigger={scrollTrigger}
+          delay={delay}
         />
       ))}
     </div>

@@ -1,26 +1,35 @@
 import { useEffect } from "react";
 import styles from "./widget.module.css";
-import PortableText from "react-portable-text";
 
-const ProjectWidget = ({ widgetContent, setIndex, extended, setExtended }) => {
-  useEffect(() => () => setExtended(false), []);
+import PortableText from "react-portable-text";
+import { SlArrowRight } from "react-icons/sl";
+
+import { useThreeDig } from "../../hooks/useThreeDig";
+
+const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
+  useEffect(() => () => setHovered(false), []);
 
   return (
     <div
       className={styles.outer}
-      onMouseEnter={() => setExtended(true)}
-      onMouseLeave={() => setExtended(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <div className={styles.left}></div>
       <div className={styles.inner} onClick={() => setIndex(5)}>
         <div className={styles.projectWrapper}>
           <div className={styles.projectHead}>
-            <div className={styles.projectIndex}>001</div>
+            <div className={styles.projectIndex}>
+              {useThreeDig(widgetContent.i)}
+            </div>
             <div className={styles.projectTitle}>{widgetContent.title}</div>
+            <div className={styles.projectArrow}>
+              <SlArrowRight />
+            </div>
           </div>
 
-          {extended && (
-            <div className={styles.projectText} >
+          {hovered && (
+            <div className={styles.projectText}>
               <PortableText content={widgetContent.shortDescription} />
             </div>
           )}

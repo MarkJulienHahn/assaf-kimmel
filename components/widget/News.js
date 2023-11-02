@@ -1,12 +1,20 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import styles from "./widget.module.css";
 
 import NewsEntry from "./NewsEntry";
 
-const News = ({ setIndex, index, extended, setExtended, news }) => {
-  console.log(news);
+const News = ({ extended, setExtended, hovered, setHovered, news }) => {
+  useEffect(() => {
+    history.replaceState(null, "", `/`);
+  }, []);
 
+  useEffect(
+    () => () => {
+      setHovered(false), setExtended(false);
+    },
+    []
+  );
   return (
     <div className={styles.outer}>
       <div className={styles.left}></div>
@@ -25,13 +33,22 @@ const News = ({ setIndex, index, extended, setExtended, news }) => {
             ))}
           </div>
         )}
-      </div>
 
-      <div
-        className={styles.extendArrow}
-        onClick={() => setExtended(!extended)}
-      >
-        down
+        {hovered && !extended && (
+          <div className={styles.extendArrowDown}>
+            <span onClick={() => setExtended(!extended)}>
+              <SlArrowDown />
+            </span>
+          </div>
+        )}
+
+        {extended && (
+          <div className={styles.extendArrowUp}>
+            <span onClick={() => setExtended(!extended)}>
+              <SlArrowUp />
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

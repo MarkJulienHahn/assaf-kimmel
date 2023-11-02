@@ -16,7 +16,17 @@ import styles from "./widget.module.css";
 
 import { BurgerVeggie } from "react-icons-animated";
 
-const Widget = ({ index, news, about, setIndex, widgetContent }) => {
+const Widget = ({
+  index,
+  news,
+  projects,
+  about,
+  contact,
+  setIndex,
+  widgetContent,
+  setScrollTrigger,
+  slug,
+}) => {
   const [widgetDimensions, setWidgetDimensions] = useState({
     width: 0,
     height: null,
@@ -25,6 +35,7 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
   const contentRef = useRef();
   const [isClosed, setIsClosed] = useState(false);
   const [extended, setExtended] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   const array = [
     <Menu key={1} setIndex={setIndex} />,
@@ -32,19 +43,20 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
     <Intro2 key={3} setIndex={setIndex} index={index} />,
     <News
       key={4}
-      setIndex={setIndex}
-      index={index}
       news={news}
       extended={extended}
       setExtended={setExtended}
+      hovered={hovered}
+      setHovered={setHovered}
     />,
     <ProjectWidget
       key={5}
       setIndex={setIndex}
       index={index}
       widgetContent={widgetContent}
-      extended={extended}
-      setExtended={setExtended}
+      hovered={hovered}
+      setHovered={setHovered}
+      slug={slug}
     />,
     <ProjectWidgetFull
       key={6}
@@ -52,10 +64,20 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
       index={index}
       widgetContent={widgetContent}
     />,
-    <ProjectsOverview key={7} setIndex={setIndex} index={index} />,
+    <ProjectsOverview
+      key={7}
+      setIndex={setIndex}
+      index={index}
+      projects={projects}
+      setScrollTrigger={setScrollTrigger}
+    />,
     <About key={8} setIndex={setIndex} index={index} about={about} />,
-    <Contact key={9} setIndex={setIndex} index={index} />,
+    <Contact key={9} setIndex={setIndex} index={index} contact={contact} />,
   ];
+
+  const indexFct = (indx) => {
+    setIndex(indx);
+  };
 
   const widgetTransformation = () => {
     setWidgetDimensions({
@@ -65,19 +87,30 @@ const Widget = ({ index, news, about, setIndex, widgetContent }) => {
   };
   useEffect(() => {
     setTimeout(widgetTransformation, 100);
-  }, [index, widgetContent, extended]);
+  }, [index, widgetContent, extended, hovered]);
 
   useEffect(() => {
     index != 0 ? setIsClosed(false) : setIsClosed(true);
   }, [index]);
 
+  useEffect(() => {
+    slug == "projects" && setTimeout(() => indexFct(6), 500);
+    slug == "about" && setTimeout(() => indexFct(7), 500);
+    slug == "contact" && setTimeout(() => indexFct(8), 500);
+  }, []);
+
   return (
     <div
       className={`${styles.wrapper} ${index == 3 ? styles.wrapperNews : ""}`}
       style={{ width: widgetDimensions.width, height: widgetDimensions.height }}
+      onMouseEnter={!extended ? () => setHovered(true) : () => {}}
+      onMouseLeave={!extended ? () => setHovered(false) : () => {}}
     >
       {index != 1 && index != 2 && (
-        <div className={styles.menuIcon} onClick={() => setIndex(0)}>
+        <div
+          className={styles.menuIcon}
+          onClick={index != 0 ? () => setIndex(0) : () => setIndex(3)}
+        >
           <BurgerVeggie isClosed={isClosed} />
         </div>
       )}

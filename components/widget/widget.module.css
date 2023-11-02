@@ -16,7 +16,7 @@
   background: var(--widget-color);
   transition: all 0.2s ease-out;
   max-height: calc(100vh - 2 * var(--space-S));
-  overflow: hidden;
+  overflow: scroll;
   overscroll-behavior: none;
   z-index: 100;
 }
@@ -106,11 +106,28 @@
   padding-bottom: 30px;
 }
 
-.extendArrow {
-  position: absolute;
-  bottom: -20px;
-  right: var(--space-S);
+.extendArrowDown,
+.extendArrowUp {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  animation: fadeIn 0.5s ease;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  height: 20px;
+}
+
+.extendArrowDown span,
+.extendArrowUp span {
   cursor: pointer;
+  height: 11px;
+}
+
+.extendArrowUp {
+  position: absolute;
+  bottom: var(--space-S);
+  right: var(--space-S);
 }
 
 .innerBottom {
@@ -140,6 +157,18 @@
 
 /* PROJECT */
 
+.outerFull {
+  width: calc(100vw - 4 * var(--space-S));
+  height: calc(100vh - 4 * var(--space-S));
+  display: flex;
+}
+
+.outerProject {
+  margin-right: 25px;
+  max-height: calc(100vh - 4 * var(--space-S));
+  display: flex;
+}
+
 .projectWrapper {
   width: 300px;
   cursor: pointer;
@@ -151,6 +180,14 @@
 
 .projectHead {
   display: flex;
+}
+
+.projectArrow {
+  position: absolute;
+  top: 15px;
+  right: var(--space-S);
+  z-index: 100;
+  cursor: pointer;
 }
 
 .projectText {
@@ -167,35 +204,31 @@
 
 .projectTextFull p {
   padding-bottom: 25px;
-}
-
-.projectTextFull {
   font-family: "ProtestMono";
   font-size: var(--PGM-font-size);
   line-height: var(--PGM-line-height);
   letter-spacing: var(--PGM-letter-spacing);
   font-variation-settings: "wght" 70;
+}
+
+.projectTextFull,
+.projectCredits,
+.projectImagesWrapper {
   overflow-y: scroll;
   overflow-x: hidden;
   overscroll-behavior: none;
-  height: calc(100% - 2 * var(--space-S));
+  max-height: calc(100vh - 4 * var(--space-S));
   scrollbar-width: 0;
+  width: 300px;
+  padding-right: var(--space-S);
 }
 
-.projectCredits {
-  width: 400px;
-  margin-left: var(--space-S);
-  /* display: flex; */
+.projectCreditsPair {
+  padding-bottom: 5px;
 }
 
-.projectCreditsRow {
-  display: flex;
-}
-.projectCreditsRow p {
-  width: 50%;
-}
-
-.projectIndex {
+.projectIndex,
+.projectCreditsHead {
   font-family: "ProtestMono";
   font-size: var(--PGM-font-size);
   line-height: var(--PGM-line-height);
@@ -208,11 +241,10 @@
   white-space: nowrap;
 }
 
-.outerFull {
-  width: calc(100vw - 4 * var(--space-S));
-  height: calc(100vh - 4 * var(--space-S));
-  display: flex;
-  border-bottom: var(--space-S);
+.projectImage {
+  position: relative;
+  margin-bottom: 5px;
+  width: 300px;
 }
 
 /* ABOUT */
@@ -223,9 +255,89 @@
 }
 
 .aboutContent {
-  width: 400px
+  width: 400px;
+}
+
+.aboutContent div p {
+  text-indent: 40px;
+}
+
+.aboutContent div p:first-child {
+  text-indent: 0;
 }
 
 .aboutImage {
+  margin-top: var(--space-S);
   width: 200px;
+  height: 250px;
+  position: relative;
+}
+
+/* CONTACT */
+
+.contactWrapper {
+  animation: fadeIn 0.2s ease-in;
+}
+
+.contactRow {
+  display: flex;
+  white-space: nowrap;
+}
+
+.contactHead {
+  width: 100px;
+}
+
+.contactWrapper a {
+  cursor: pointer;
+}
+
+.contactWrapper a:hover {
+  text-decoration: underline 1.7px;
+  text-underline-offset: 3px;
+}
+
+/* OVERVIEW */
+
+.overviewInner {
+  display: flex;
+  overflow: scroll;
+}
+
+.overviewColumn {
+  width: 300px;
+  min-width: 300px;
+  overflow: scroll;
+  overscroll-behavior: contain;
+  height: 100%;
+  animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.overviewHead {
+  display: flex;
+}
+
+.overviewIndex,
+.overviewText {
+  padding-right: var(--space-M);
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
+}
+
+.overviewImagesWrapper {
+  padding-top: var(--space-M);
+  cursor: pointer;
+}
+
+.overviewImage {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 5px;
 }

@@ -29,5 +29,10 @@
 }
 
 .list div:last-child {
-    height: 16px;
+  height: 16px;
+}
+
+.list div:hover {
+  text-decoration: underline 1.7px;
+  text-underline-offset: 3px;
 }

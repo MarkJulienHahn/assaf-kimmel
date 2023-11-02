@@ -1,8 +1,8 @@
 import news from "./news";
-import info from "./info";
+import contact from "./contact";
 import projects from "./projects";
 import about from "./about"
 
-const schemaTypes = [news, info, projects, about];
+const schemaTypes = [news, contact, projects, about];
 
 export default schemaTypes;

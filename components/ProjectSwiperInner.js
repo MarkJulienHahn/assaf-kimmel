@@ -6,41 +6,24 @@ import Image from "next/image";
 
 const ProjectSwiperInner = ({
   image,
-  swiperHeight,
   setSwiperIndex,
   swiperIndex,
   i,
-  prev,
-  next,
-  setControls,
   setTranslation,
-  length,
 }) => {
   const [active, setActive] = useState(true);
-  const [width, setWidth] = useState(null);
   const [url, setUrl] = useState(null);
-  const [position, setPosition] = useState(null);
+  const [position, setPosition] = useState({ next: 0, prev: 0 });
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentWidth, setCurrentWidth] = useState(0);
+
   const ref = useRef();
 
   const { windowWidth } = useWindowDimensions();
 
-  // useEffect(() => {
-  //   swiperSlide.isActive && setSwiperIndex(i);
-  // }, [swiperSlide.isActive]);
-
   const getImageWidth = (height) => {
     return `${height * image.asset.metadata.dimensions.aspectRatio}vh`;
   };
-
-  const swiperAction = () => {
-    setTranslation(position), setSwiperIndex(i);
-  };
-
-  const swiperBackAction = () => {
-    setTranslation(0), setSwiperIndex(0);
-  };
-
-
   const getUrl = () => {
     return urlFor(image.asset.url)
       .width(Math.floor(windowWidth * 0.9))
@@ -48,69 +31,83 @@ const ProjectSwiperInner = ({
       .url();
   };
 
-  useEffect(() => {
-    next && swiperIndex == i && swiper.slideNext();
-  }, [next]);
+  // SWIPER FUNCTIONS
 
-  useEffect(() => {
-    prev && swiperIndex == i && swiper.slidePrev();
-  }, [prev]);
+  const swiperFunction = () => {
+    if (active && swiperIndex != 0) {
+      setTranslation(position.next - currentPosition), setSwiperIndex(i - 1);
+    } else if (i == 0) {
+      setTranslation(currentWidth), setSwiperIndex(i + 1);
+    } else setTranslation(position.next - 40), setSwiperIndex(i);
+  };
+
+  const nextFct = async () => {
+    setPosition((prevState) => ({
+      ...prevState,
+      next: ref.current?.getBoundingClientRect().left,
+    }));
+  };
+
+  const prevFct = () => {
+    setPosition((prevState) => ({
+      ...prevState,
+      prev: position.next - currentPosition,
+    }));
+  };
+
+  const currentFct = () => {
+    i - 1 == swiperIndex &&
+      setCurrentPosition(ref.current?.getBoundingClientRect().left),
+      active && setCurrentWidth(ref.current?.clientWidth);
+  };
 
   useEffect(() => {
     i == swiperIndex ? setActive(true) : setActive(false);
-  }, []);
-
-  useEffect(() => {
-    i == swiperIndex ? setActive(true) : setActive(false);
+    setTimeout(currentFct, 500);
   }, [swiperIndex]);
 
   useEffect(() => {
-    setWidth(ref.current?.clientHeight);
-    setPosition(ref.current?.getBoundingClientRect().left);
-  }, []);
-
-  useEffect(() => {
+    setTimeout(nextFct, 500);
+    setTimeout(prevFct, 500);
+    i == swiperIndex ? setActive(true) : setActive(false);
     setUrl(getUrl());
   }, []);
 
-
-
   return (
-    <div
-      className={styles.imageWrapper}
-      style={{
-        // maxWidth: "calc(100vw - 2*var(--space-S))",
-        // maxHeight: ref.current?.clientHeight,
-        height: "92vh",
-        width: getImageWidth(92),
-        position: "relative",
-        transform: active ? "scale(1)" : "scale(0.3)",
-        transformOrigin: "bottom left",
-        background: image.asset.metadata.palette.vibrant.background,
-        // border: "2px solid red"
-      }}
-      onClick={swiperIndex + 1 != length ? swiperAction : swiperBackAction}
-      ref={ref}
-    >
-      {" "}
-
-      {url && (
-        <Image
-          fill
-          src={urlFor(image.asset.url)
-            .width(Math.floor(windowWidth * 0.9))
-            .quality(50)
-            .url()}
-          // width={width}
-          // height={getImageWidth(width, "px")}
-          alt={image.alt}
-          style={{
-            objectFit: "contain",
-            objectPosition: "top",
-          }}
-        />
-      )}
-    </div>
+    <>
+      <div
+        className={styles.imageWrapper}
+        style={{
+          height: "92vh",
+          width: getImageWidth(92),
+          position: "relative",
+          transform: active ? "scale(1)" : "scale(0.3)",
+          transformOrigin: "bottom left",
+          background: image.asset.metadata.palette.vibrant.background,
+          marginLeft: active ? "var(--space-M)" : "5px",
+        }}
+        onClick={swiperFunction}
+        ref={ref}
+      >
+        <div
+          className={
+            active && swiperIndex != 0 ? styles.leftArrow : styles.rightArrow
+          }
+        >
+          {url && (
+            <Image
+              fill
+              src={url}
+              alt={image.alt ? image.alt : "An Image by Assaf Kimmel"}
+              style={{
+                objectFit: "contain",
+                objectPosition: "top",
+              }}
+            />
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 

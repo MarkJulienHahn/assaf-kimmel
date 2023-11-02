@@ -10,11 +10,6 @@ export const myStructure = (S, context) =>
         S,
         context,
       }),
-      S.listItem()
-        .title("Info")
-        .id("info")
-        .child(S.document().schemaType("info").documentId("info")),
-
       S.divider(),
       orderableDocumentListDeskItem({
         type: "projects",
@@ -26,4 +21,8 @@ export const myStructure = (S, context) =>
         .title("About")
         .id("about")
         .child(S.document().schemaType("about").documentId("about")),
+      S.listItem()
+        .title("Contact")
+        .id("contact")
+        .child(S.document().schemaType("contact").documentId("contact")),
     ]);

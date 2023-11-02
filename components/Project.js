@@ -5,11 +5,18 @@ import { useInView } from "react-intersection-observer";
 
 import ProjectSwiperInner from "./ProjectSwiperInner";
 
-const Project = ({ setIndex, project, setWidgetContent }) => {
+const Project = ({
+  setIndex,
+  project,
+  setWidgetContent,
+  scrollTrigger,
+  i,
+  delay,
+}) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [width, setWidth] = useState(null);
-  const [delay, setDelay] = useState(true);
   const [translation, setTranslation] = useState(0);
+  const [mouseLable, setMouseLable] = useState("");
 
   const { ref, inView, entry } = useInView({
     threshold: 0.6,
@@ -18,35 +25,38 @@ const Project = ({ setIndex, project, setWidgetContent }) => {
   const anchorRef = useRef();
   const wrapperRef = useRef();
 
-  // Delay so the scrollTo doesn't start on the first render
-  const delayFct = () => {
-    setDelay(false);
-  };
-
   const changeWidget = () => {
     setIndex(4), setWidgetContent(project);
-    // history.replaceState(null, "", `/${project.slug.current}`);
+    history.replaceState(null, "", `/${project.slug.current}`);
   };
 
   useEffect(() => {
-    inView && changeWidget();
+    !delay && inView && changeWidget();
   }, [inView]);
 
   useEffect(() => {
     !delay && anchorRef.current.scrollIntoView({ behavior: "smooth" }),
-      setIndex(4);
+      !delay && setIndex(4);
   }, [swiperIndex]);
 
   useEffect(() => {
+    scrollTrigger == project.slug.current &&
+      anchorRef.current.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [scrollTrigger]);
+
+  useEffect(() => {
     setWidth(wrapperRef.current?.clientWidth);
-    setTimeout(delayFct, 1000);
+    Object.assign(project, { i: i });
   }, []);
 
   return (
     <>
       <div
         className={styles.sliderWrapper}
-        style={{ width: width, transform: `translateX(-${translation}px)` }}
+        style={{
+          width: width,
+          transform: swiperIndex ? `translateX(-${translation}px)` : "",
+        }}
       >
         <div className={styles.anchor} ref={anchorRef}></div>
         <div ref={wrapperRef} style={{ display: "flex" }}>
@@ -56,9 +66,7 @@ const Project = ({ setIndex, project, setWidgetContent }) => {
               image={image}
               swiperIndex={swiperIndex}
               setSwiperIndex={setSwiperIndex}
-              translation={translation}
               setTranslation={setTranslation}
-              length={project.images.length}
               i={i}
             />
           ))}

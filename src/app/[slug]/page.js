@@ -1,13 +1,13 @@
-import Main from "../../components/Main";
-import styles from "./home.module.css";
+import Main from "../../../components/Main";
+import styles from "../home.module.css";
 import {
   getNews,
   getAbout,
   getProjects,
   getContact,
-} from "../../sanity/sanity-utils";
+} from "../../../sanity/sanity-utils";
 
-export default async function Home() {
+export default async function Home({ params }) {
   const news = await getNews();
   const projects = await getProjects();
   const about = await getAbout();
@@ -20,6 +20,7 @@ export default async function Home() {
         news={news}
         about={about[0]}
         contact={contact[0]}
+        slug={params.slug}
       />
     </div>
   );
