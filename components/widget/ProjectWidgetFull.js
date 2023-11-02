@@ -55,6 +55,7 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
                   }px`,
                   background: image.asset.metadata.palette.vibrant.background,
                 }}
+                key={i}
               >
                 <Image
                   src={urlFor(image.asset.url).width(600).quality(50).url()}
