@@ -13,7 +13,7 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
   const [prev, setPrev] = useState(false);
 
   const dateFormatted = (date) =>
-    new Date(date).toLocaleString("de-de", {
+    new Date(date).toLocaleString("en-us", {
       month: "numeric",
       year: "numeric",
     });

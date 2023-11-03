@@ -11,6 +11,7 @@
   position: fixed;
   left: var(--space-S);
   top: var(--space-S);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-radius: var(--widget-border-radius);
   background: var(--widget-color);
@@ -19,6 +20,8 @@
   overflow-y: scroll;
   overscroll-behavior: none;
   z-index: 100;
+  border: 0.1px solid rgb(213, 213, 213);
+  scrollbar-width: none;
 }
 
 .outer {
