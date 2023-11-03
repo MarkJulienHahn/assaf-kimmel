@@ -85,6 +85,7 @@ const ProjectSwiperInner = ({
           transformOrigin: "bottom left",
           background: image.asset.metadata.palette.vibrant.background,
           marginLeft: active ? "var(--space-M)" : "5px",
+          opacity: i > swiperIndex + 1 ? "0" : "1",
         }}
         onClick={swiperFunction}
         ref={ref}

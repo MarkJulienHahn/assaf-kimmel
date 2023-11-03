@@ -7,7 +7,7 @@ import PortableText from "react-portable-text";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-const NewsEntry = ({ i, entry }) => {
+const NewsEntry = ({ i, entry, setScrollTrigger }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
@@ -17,6 +17,10 @@ const NewsEntry = ({ i, entry }) => {
       month: "numeric",
       year: "numeric",
     });
+
+  const showProject = (slug) => {
+    setScrollTrigger(slug);
+  };
 
   const nextFunction = () => {
     setNext(true), setTimeout(() => setNext(false), 10);
@@ -33,13 +37,21 @@ const NewsEntry = ({ i, entry }) => {
         </div>
         <div className={styles.newsContent}>
           <div className={styles.headline}>
-            <p>
-              <PortableText content={entry.headline} />
-            </p>
+            <PortableText content={entry.headline} />
           </div>
           <div className={styles.text}>
             <PortableText content={entry.text} />
           </div>
+
+          {entry.project?.slug && (
+            <div
+              className={styles.link}
+              onClick={() => showProject(entry.project.slug.current)}
+            >
+              <span>Show Project</span>
+            </div>
+          )}
+
           {entry.images.length && (
             <>
               <div className={styles.images}>
@@ -51,14 +63,12 @@ const NewsEntry = ({ i, entry }) => {
                   {entry.images.map((image, i) => (
                     <SwiperSlide key={i}>
                       <SwiperInner
-                        //   swiperHeight={swiperHeight}
                         image={image}
                         setSwiperIndex={setSwiperIndex}
                         i={i + 1}
                         swiperIndex={swiperIndex}
                         next={next}
                         prev={prev}
-                        //   setControls={setControls}
                       />
                     </SwiperSlide>
                   ))}

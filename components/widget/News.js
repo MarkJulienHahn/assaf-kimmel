@@ -4,7 +4,14 @@ import styles from "./widget.module.css";
 
 import NewsEntry from "./NewsEntry";
 
-const News = ({ extended, setExtended, hovered, setHovered, news }) => {
+const News = ({
+  extended,
+  setExtended,
+  hovered,
+  setHovered,
+  news,
+  setScrollTrigger,
+}) => {
   useEffect(() => {
     history.replaceState(null, "", `/`);
   }, []);
@@ -23,13 +30,18 @@ const News = ({ extended, setExtended, hovered, setHovered, news }) => {
         style={{ maxHeight: !extended ? "auto" : "calc(100vh - 50px" }}
       >
         <div className={styles.inner}>
-          <NewsEntry entry={news[0]} />
+          <NewsEntry entry={news[0]} setScrollTrigger={setScrollTrigger} />
         </div>
 
         {extended && (
           <div className={styles.innerBottom}>
             {news.map((entry, i) => (
-              <NewsEntry key={i} i={i} entry={entry} />
+              <NewsEntry
+                key={i}
+                i={i}
+                entry={entry}
+                setScrollTrigger={setScrollTrigger}
+              />
             ))}
           </div>
         )}

@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./widget.module.css";
 import { useSwiper } from "swiper/react";
 import { useSwiperSlide } from "swiper/react";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { urlFor } from "../../hooks/useImageUrlBuilder";
 
 const SwiperInner = ({
   image,
@@ -30,8 +30,6 @@ const SwiperInner = ({
     prev && swiperIndex == i && swiper.slidePrev();
   }, [prev]);
 
-  
-
   return (
     <div
       className={styles.imageWrapper}
@@ -42,7 +40,7 @@ const SwiperInner = ({
       onClick={() => swiper.slideNext()}
     >
       <Image
-        src={image.asset.url}
+        src={urlFor(image.asset.url).height(500).quality(50).url()}
         height={200}
         width={200 * image.asset.metadata.dimensions.aspectRatio}
         alt={image.alt}

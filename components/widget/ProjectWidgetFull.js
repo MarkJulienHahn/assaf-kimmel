@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { SlArrowLeft } from "react-icons/sl";
 
 import styles from "./widget.module.css";
@@ -10,7 +8,6 @@ import { urlFor } from "../../hooks/useImageUrlBuilder";
 import { useThreeDig } from "../../hooks/useThreeDig";
 
 const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
-  const [url, setUrl] = useState(null);
 
   return (
     <div className={styles.outerProject}>

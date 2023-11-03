@@ -16,7 +16,7 @@
   background: var(--widget-color);
   transition: all 0.2s ease-out;
   max-height: calc(100vh - 2 * var(--space-S));
-  overflow: scroll;
+  overflow-y: scroll;
   overscroll-behavior: none;
   z-index: 100;
 }
@@ -67,6 +67,7 @@
 .left {
   width: 50px;
 }
+
 .inner {
   display: flex;
 }
@@ -79,6 +80,30 @@
 .text,
 .images {
   padding-bottom: var(--space-S);
+}
+
+.text a {
+  font-family: "Protest";
+  font-variation-settings: "wght" 130;
+  font-size: var(--PG-font-size);
+  line-height: var(--PG-line-height);
+  letter-spacing: var(--PG-letter-spacing);
+  word-spacing: var(--PG-word-spacing);
+}
+
+.link {
+  padding-bottom: var(--space-S);
+}
+
+.link span {
+  width: 90px;
+  cursor: pointer;
+}
+
+.link span:hover,
+.text a:hover {
+  text-decoration: underline 1.7px;
+  text-underline-offset: 3px;
 }
 
 .date,
@@ -95,7 +120,7 @@
 
 .newsFeed {
   overscroll-behavior: contain;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .newsContent {
@@ -121,7 +146,7 @@
 .extendArrowDown span,
 .extendArrowUp span {
   cursor: pointer;
-  height: 11px;
+  /* height: 11px; */
 }
 
 .extendArrowUp {
@@ -221,6 +246,14 @@
   scrollbar-width: 0;
   width: 300px;
   padding-right: var(--space-S);
+}
+
+.projectCredits,
+.projectImagesWrapper {
+  animation: fadeIn 0.5s ease;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 .projectCreditsPair {
@@ -340,4 +373,25 @@
   width: 200px;
   height: 200px;
   margin-bottom: 5px;
+}
+
+/* IMPRINT */
+
+.imprintContent p {
+  font-family: "ProtestMono";
+  font-size: var(--PGM-font-size);
+  line-height: var(--PGM-line-height);
+  letter-spacing: var(--PGM-letter-spacing);
+  font-variation-settings: "wght" 70;
+}
+
+.imprintContent h1 {
+  font-family: "Protest";
+  font-variation-settings: "wght" 130;
+  font-weight: normal;
+  font-size: var(--PG-font-size);
+  line-height: var(--PG-line-height);
+  letter-spacing: var(--PG-letter-spacing);
+  word-spacing: var(--PG-word-spacing);
+  padding-top: 20px;
 }

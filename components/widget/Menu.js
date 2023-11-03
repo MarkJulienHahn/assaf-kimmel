@@ -9,6 +9,7 @@ const Menu = ({ setIndex }) => {
         <div onClick={() => setIndex(6)}>Projects</div>
         <div onClick={() => setIndex(7)}>About</div>
         <div onClick={() => setIndex(8)}>Contact</div>
+        <div onClick={() => setIndex(9)}>Imprint</div>
       </div>
     </div>
   );

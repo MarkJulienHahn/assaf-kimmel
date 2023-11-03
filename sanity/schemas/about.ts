@@ -1,5 +1,4 @@
-import { defineField, defineType } from "sanity";
-import { orderRankField } from "@sanity/orderable-document-list";
+import { defineType } from "sanity";
 
 export default defineType({
   name: "about",
@@ -34,8 +33,5 @@ export default defineType({
       fields: [{ name: "alt", title: "Alt", type: "string" }],
 
     },
-
-
-    orderRankField({ type: "about" }),
   ],
 });

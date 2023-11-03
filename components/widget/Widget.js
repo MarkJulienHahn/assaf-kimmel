@@ -11,6 +11,7 @@ import ProjectWidgetFull from "./ProjectWidgetFull";
 import ProjectsOverview from "./ProjectsOverview";
 import About from "./About";
 import Contact from "./Contact";
+import Imprint from "./Imprint";
 
 import styles from "./widget.module.css";
 
@@ -22,6 +23,7 @@ const Widget = ({
   projects,
   about,
   contact,
+  imprint,
   setIndex,
   widgetContent,
   setScrollTrigger,
@@ -48,6 +50,7 @@ const Widget = ({
       setExtended={setExtended}
       hovered={hovered}
       setHovered={setHovered}
+      setScrollTrigger={setScrollTrigger}
     />,
     <ProjectWidget
       key={5}
@@ -73,6 +76,7 @@ const Widget = ({
     />,
     <About key={8} setIndex={setIndex} index={index} about={about} />,
     <Contact key={9} setIndex={setIndex} index={index} contact={contact} />,
+    <Imprint key={9} setIndex={setIndex} index={index} imprint={imprint} />,
   ];
 
   const indexFct = (indx) => {
@@ -94,9 +98,9 @@ const Widget = ({
   }, [index]);
 
   useEffect(() => {
-    slug == "projects" && setTimeout(() => indexFct(6), 500);
-    slug == "about" && setTimeout(() => indexFct(7), 500);
-    slug == "contact" && setTimeout(() => indexFct(8), 500);
+    slug == "projects" && setTimeout(() => indexFct(6), 1000);
+    slug == "about" && setTimeout(() => indexFct(7), 1000);
+    slug == "contact" && setTimeout(() => indexFct(8), 1000);
   }, []);
 
   return (

@@ -10,10 +10,9 @@ export default client;
 
 export async function getNews() {
   return client.fetch(
-    groq`*[_type == "news"]|order(orderRank){"images": images[]{alt, "asset": asset->{...}}, text, headline, title, slug, date}`
+    groq`*[_type == "news"]|order(orderRank){"images": images[]{alt, "asset": asset->{...}}, text, headline, title, slug, date, "project": project->{...}}`
   );
 }
-
 
 export async function getProjects() {
   return client.fetch(
@@ -31,5 +30,11 @@ export async function getAbout() {
 export async function getContact() {
   return client.fetch(
     groq`*[_type == "contact"]{...}`
+  );
+}
+
+export async function getImprint() {
+  return client.fetch(
+    groq`*[_type == "imprint"]{...}`
   );
 }

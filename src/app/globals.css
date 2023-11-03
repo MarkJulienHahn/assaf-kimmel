@@ -83,6 +83,7 @@ body {
   font-feature-settings: "ss02";
   scrollbar-width: none;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -93,6 +94,7 @@ h1,
 h2,
 h3 {
   margin: 0;
+
 }
 
 .swiper-slide {

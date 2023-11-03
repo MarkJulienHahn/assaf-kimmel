@@ -22,7 +22,7 @@
   overflow: scroll;
   display: flex;
   transition: all 0.5s ease;
-  margin-top: 80vh;
+  margin-top: 40vh;
   scroll-padding-top: -50px;
 }
 

@@ -49,9 +49,36 @@ export default defineType({
           lists: [],
           marks: {
             decorators: [{ title: "Emphasis", value: "em" }],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'External link',
+                fields: [
+                  {
+                    name: 'href',
+                    type: 'url',
+                    title: 'URL'
+                  },
+                  {
+                    title: 'Open in new tab',
+                    name: 'blank',
+                    type: 'boolean'
+                  }
+                ],
+              },
+            ],
           },
+
         },
       ],
+    },
+
+    {
+      title: 'Project Reference',
+      name: 'project',
+      type: 'reference',
+      to: [{ type: 'projects' }]
     },
 
     {
