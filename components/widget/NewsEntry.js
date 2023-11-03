@@ -56,8 +56,18 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
             <>
               <div className={styles.images}>
                 <div className={styles.swiperControls}>
-                  <div onClick={prevFunction}></div>
-                  <div onClick={nextFunction}></div>
+                  {entry.images.length > 1 && (
+                    <>
+                      <div
+                        className={styles.swiperControlLeft}
+                        onClick={prevFunction}
+                      ></div>
+                      <div
+                        className={styles.swiperControlRight}
+                        onClick={nextFunction}
+                      ></div>
+                    </>
+                  )}
                 </div>
                 <Swiper spaceBetween={5} slidesPerView={"auto"}>
                   {entry.images.map((image, i) => (

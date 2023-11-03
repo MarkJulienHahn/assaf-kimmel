@@ -32,9 +32,9 @@
 }
 
 .leftArrow {
-  cursor: w-resize
+  cursor: url("../public/images/arrow-left.svg"), auto
 }
 
 .rightArrow {
-  cursor: e-resize
+  cursor: url("../public/images/arrow-right.svg"), auto
 }

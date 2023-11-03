@@ -33,6 +33,7 @@
 }
 
 .list div:hover {
-  text-decoration: underline 1.7px;
-  text-underline-offset: 3px;
+  color: var(--primary);
+  /* text-decoration: underline 1.7px;
+  text-underline-offset: 3px; */
 }

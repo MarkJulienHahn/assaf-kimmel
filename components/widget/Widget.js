@@ -101,6 +101,7 @@ const Widget = ({
     slug == "projects" && setTimeout(() => indexFct(6), 1000);
     slug == "about" && setTimeout(() => indexFct(7), 1000);
     slug == "contact" && setTimeout(() => indexFct(8), 1000);
+    slug == "imprint" && setTimeout(() => indexFct(9), 1000);
   }, []);
 
   return (

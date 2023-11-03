@@ -1,8 +1,10 @@
 :root {
   --foreground-rgb: #222222;
   --background-rgb: #fcfcfc;
+  --primary: #001eff;
 
-  --widget-color: rgb(237 237 237 / 50%);
+  --widget-color: rgb(237 237 237 / 70%);
+  /* --widget-color: rgb(0 0 255 / 90%); */
   --widget-border-radius: 5px;
 
   --space-S: 13px;
@@ -59,7 +61,7 @@
 }
 
 ::selection {
-  background: var(--foreground-rgb);
+  background: var(--primary);
   color: var(--background-rgb);
 }
 
@@ -94,7 +96,6 @@ h1,
 h2,
 h3 {
   margin: 0;
-
 }
 
 .swiper-slide {
