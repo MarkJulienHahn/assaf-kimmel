@@ -16,7 +16,7 @@ const Project = ({
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [width, setWidth] = useState(null);
   const [translation, setTranslation] = useState(0);
-  const [mouseLable, setMouseLable] = useState("");
+  const [sliderTrigger, setSliderTrigger] = useState(null);
 
   const { ref, inView, entry } = useInView({
     threshold: 0.6,
@@ -24,6 +24,20 @@ const Project = ({
 
   const anchorRef = useRef();
   const wrapperRef = useRef();
+
+  const handleSliderTrigger = (dir) => {
+    const resetSliderTrigger = () => {
+      setSliderTrigger(null);
+    };
+
+    if (dir == "left") {
+      setSliderTrigger("left");
+      setTimeout(resetSliderTrigger, 100);
+    } else if (dir == "right") {
+      setSliderTrigger("right");
+      setTimeout(resetSliderTrigger, 100);
+    }
+  };
 
   const changeWidget = () => {
     setIndex(4), setWidgetContent(project);
@@ -49,31 +63,50 @@ const Project = ({
     Object.assign(project, { i: i });
   }, []);
 
+  // console.log(swiperIndex, translation);
+
   return (
     <>
-      <div
-        className={styles.sliderWrapper}
-        style={{
-          width: width,
-          transform: swiperIndex ? `translateX(-${translation}px)` : "",
-        }}
-      >
-        <div className={styles.anchor} ref={anchorRef}></div>
-        <div ref={wrapperRef} style={{ display: "flex" }}>
-          {project.images.map((image, i) => (
-            <ProjectSwiperInner
-              key={i}
-              image={image}
-              swiperIndex={swiperIndex}
-              setSwiperIndex={setSwiperIndex}
-              setTranslation={setTranslation}
-              i={i}
-            />
-          ))}
+      <div className={styles.sliderOuter}>
+        <div className={styles.sliderControls}>
+          <div
+            className={swiperIndex != 0 && styles.leftArrow}
+            onClick={() => handleSliderTrigger("left")}
+          ></div>
+          <div
+            className={
+              swiperIndex < project.images.length - 1 && styles.rightArrow
+            }
+            onClick={() => handleSliderTrigger("right")}
+          ></div>
         </div>
-      </div>
-      <div className={styles.index} ref={ref}>
-        0{swiperIndex + 1} 0{project.images.length}
+        <div
+          className={styles.sliderWrapper}
+          style={{
+            width: width,
+            transform: swiperIndex ? `translateX(-${translation}px)` : "",
+          }}
+        >
+          <div className={styles.anchor} ref={anchorRef}></div>
+          <div ref={wrapperRef} style={{ display: "flex" }}>
+            {project.images.map((image, i) => (
+              <ProjectSwiperInner
+                key={i}
+                image={image}
+                swiperIndex={swiperIndex}
+                setSwiperIndex={setSwiperIndex}
+                setTranslation={setTranslation}
+                translation={translation}
+                sliderTrigger={sliderTrigger}
+                length={project.images.length}
+                i={i}
+              />
+            ))}
+          </div>
+        </div>
+        <div className={styles.index} ref={ref}>
+          0{swiperIndex + 1} 0{project.images.length}
+        </div>
       </div>
     </>
   );

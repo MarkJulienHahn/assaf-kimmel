@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import styles from "./widget.module.css";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
 import NewsEntry from "./NewsEntry";
 
 const News = ({
@@ -12,6 +14,8 @@ const News = ({
   news,
   setScrollTrigger,
 }) => {
+  const { windowWidth } = useWindowDimensions();
+
   useEffect(() => {
     history.replaceState(null, "", `/`);
   }, []);
@@ -22,12 +26,30 @@ const News = ({
     },
     []
   );
+
+  useEffect(() => {
+    windowWidth <= 600 && setHovered(true);
+  }, [windowWidth]);
+
   return (
-    <div className={styles.outer}>
+    <div
+      className={styles.outer}
+      style={
+        extended && windowWidth <= 600
+          ? { height: "calc(100vh - 2* var(--space-S)" }
+          : { height: "auto" }
+      }
+    >
       <div className={styles.left}></div>
       <div
         className={styles.newsFeed}
-        style={{ maxHeight: !extended ? "auto" : "calc(100vh - 50px" }}
+        style={{
+          maxHeight: !extended
+            ? "auto"
+            : windowWidth <= 600
+            ? "calc(100vh - 125px"
+            : "calc(100vh - 50px",
+        }}
       >
         <div className={styles.inner}>
           <NewsEntry entry={news[0]} setScrollTrigger={setScrollTrigger} />

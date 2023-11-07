@@ -53,7 +53,7 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
           )}
 
           {entry.images.length && (
-            <>
+            <div>
               <div className={styles.images}>
                 <div className={styles.swiperControls}>
                   {entry.images.length > 1 && (
@@ -62,32 +62,51 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
                         className={styles.swiperControlLeft}
                         onClick={prevFunction}
                       ></div>
+
                       <div
-                        className={styles.swiperControlRight}
-                        onClick={nextFunction}
+                      // muss da bleiben für Selection in Safari ..
                       ></div>
                     </>
                   )}
                 </div>
-                <Swiper spaceBetween={5} slidesPerView={"auto"}>
-                  {entry.images.map((image, i) => (
-                    <SwiperSlide key={i}>
-                      <SwiperInner
-                        image={image}
-                        setSwiperIndex={setSwiperIndex}
-                        i={i + 1}
-                        swiperIndex={swiperIndex}
-                        next={next}
-                        prev={prev}
-                      />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+                {entry.images.length > 1 ? (
+                  <div className={styles.swiperControlRight}>
+                    <Swiper spaceBetween={5} slidesPerView={"auto"}>
+                      {entry.images.map((image, i) => (
+                        <SwiperSlide key={i}>
+                          <SwiperInner
+                            image={image}
+                            setSwiperIndex={setSwiperIndex}
+                            i={i + 1}
+                            swiperIndex={swiperIndex}
+                            next={next}
+                            prev={prev}
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                ) : (
+                  <Swiper spaceBetween={5} slidesPerView={"auto"}>
+                    {entry.images.map((image, i) => (
+                      <SwiperSlide key={i}>
+                        <SwiperInner
+                          image={image}
+                          setSwiperIndex={setSwiperIndex}
+                          i={i + 1}
+                          swiperIndex={swiperIndex}
+                          next={next}
+                          prev={prev}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                )}
               </div>
               <div className={styles.index}>
                 {swiperIndex} / {entry.images.length}
               </div>
-            </>
+            </div>
           )}
         </div>
       </>

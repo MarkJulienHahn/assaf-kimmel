@@ -17,12 +17,19 @@
   margin: var(--space-S);
 }
 
+.sliderOuter {
+  opacity: 0;
+  animation: appear 0.5s ease-out;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+}
+
 .sliderWrapper {
   width: 200vw;
   overflow: scroll;
   display: flex;
   transition: all 0.5s ease;
-  margin-top: 40vh;
+  margin-top: 500px;
   scroll-padding-top: -50px;
 }
 
@@ -31,10 +38,34 @@
   transform: translateY(calc(-8vh + var(--space-M)));
 }
 
+.sliderControls {
+  position: absolute;
+  height: 92vh;
+  width: 100vw;
+  z-index: 50;
+  display: flex;
+}
+
+.sliderControls div {
+  width: 50%;
+  height: 100%;
+}
+
 .leftArrow {
-  cursor: url("../public/images/arrow-left.svg"), auto
+  cursor: url("../public/images/arrow-left.svg"), auto;
 }
 
 .rightArrow {
-  cursor: url("../public/images/arrow-right.svg"), auto
+  cursor: url("../public/images/arrow-right.svg"), auto;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(50vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0vh);
+  }
 }

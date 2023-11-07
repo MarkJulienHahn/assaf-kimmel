@@ -85,8 +85,8 @@ const Widget = ({
 
   const widgetTransformation = () => {
     setWidgetDimensions({
-      width: contentRef.current.clientWidth,
-      height: contentRef.current.clientHeight,
+      width: contentRef.current.clientWidth + 1,
+      height: contentRef.current.clientHeight + 1,
     });
   };
   useEffect(() => {

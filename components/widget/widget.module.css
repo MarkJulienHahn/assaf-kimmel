@@ -31,15 +31,17 @@
   animation-fill-mode: forwards;
   opacity: 0;
   border-bottom: var(--space-S);
+  overflow: hidden;
 }
 
 .content {
-  position: absolute;
+  position: fixed;
   padding: var(--space-S);
   animation: fadeIn 0.5s ease;
   animation-delay: 0.2s;
   animation-fill-mode: forwards;
   opacity: 0;
+  max-width: calc(100vw - 2 * var(--space-S));
 }
 
 .information {
@@ -125,6 +127,7 @@
 .newsFeed {
   overscroll-behavior: contain;
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .newsContent {
@@ -161,7 +164,7 @@
 
 .extendArrowDown:hover,
 .extendArrowUp:hover {
-  color: var(--primary)
+  color: var(--primary);
 }
 
 .innerBottom {
@@ -181,6 +184,7 @@
   z-index: 10;
   overscroll-behavior: contain;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .swiperControls div {
@@ -191,10 +195,16 @@
 
 .swiperControlLeft {
   cursor: url("../../public/images/arrow-left.svg"), auto;
+  pointer-events: auto;
 }
 
 .swiperControlRight {
   cursor: url("../../public/images/arrow-right.svg"), auto;
+  /* pointer-events: auto; */
+}
+
+.selectableText {
+  user-select: text;
 }
 
 /* PROJECT */
@@ -319,6 +329,9 @@
 
 .aboutContent {
   width: 400px;
+  overflow: scroll;
+  scrollbar-width: none;
+  max-height: calc(100vh - 50px);
 }
 
 .aboutContent div p {
@@ -383,12 +396,14 @@
 .overviewInner {
   display: flex;
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 .overviewColumn {
   width: 300px;
   min-width: 300px;
   overflow: scroll;
+  scrollbar-width: none;
   overscroll-behavior: contain;
   height: 100%;
   animation: fadeIn 0.2s ease-in;
@@ -437,6 +452,7 @@
   opacity: 0;
   max-height: calc(100vh - 4 * var(--space-S));
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 .imprintContent p {
@@ -464,4 +480,37 @@
 
 .imprintContent h2 {
   padding-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .outer {
+    flex-direction: column;
+    margin-top: 40px;
+    width: calc(100vw - 3 * var(--space-S));
+  }
+  .inner,
+  .innerBottom {
+    flex-direction: column;
+  }
+  .newsContent {
+    width: calc(100vw - 3 * var(--space-S));
+    max-height: calc(100vh - 125px);
+  }
+  .extendArrowDown,
+  .extendArrowUp {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 20px;
+  }
+  .extendArrowUp {
+    position: fixed;
+    bottom: var(--space-S);
+    left: 0;
+    width: 100vw;
+  }
+  .swiperControls {
+    display: none;
+  }
 }

@@ -5,13 +5,17 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import Image from "next/image";
 
 const ProjectSwiperInner = ({
+  i,
   image,
   setSwiperIndex,
   swiperIndex,
-  i,
   setTranslation,
+  sliderTrigger,
+  translation,
+  length
 }) => {
   const [active, setActive] = useState(true);
+  const [last, setLast] = useState(false)
   const [url, setUrl] = useState(null);
   const [position, setPosition] = useState({ next: 0, prev: 0 });
   const [currentPosition, setCurrentPosition] = useState(0);
@@ -63,6 +67,7 @@ const ProjectSwiperInner = ({
 
   useEffect(() => {
     i == swiperIndex ? setActive(true) : setActive(false);
+    i == length - 1 ? setLast(true) : setLast(false);
     setTimeout(currentFct, 500);
   }, [swiperIndex]);
 
@@ -72,6 +77,18 @@ const ProjectSwiperInner = ({
     i == swiperIndex ? setActive(true) : setActive(false);
     setUrl(getUrl());
   }, []);
+
+  useEffect(() => {
+    if (active && sliderTrigger == "right" && i == 0) {
+      setTranslation(currentWidth), setSwiperIndex(i + 1);
+    } else if (active && sliderTrigger == "right" && i != 0 && !last) {
+      setTranslation(translation + currentWidth + 5), setSwiperIndex(i + 1);
+    } else if (active && sliderTrigger == "left" && i == 0) {
+      return;
+    } else if (active && sliderTrigger == "left" && i != 0) {
+      setTranslation(position.next - currentPosition - 5), setSwiperIndex(i - 1);
+    } else return;
+  }, [sliderTrigger]);
 
   return (
     <>
@@ -87,26 +104,19 @@ const ProjectSwiperInner = ({
           marginLeft: active ? "var(--space-M)" : "5px",
           opacity: i > swiperIndex + 1 ? "0" : "1",
         }}
-        onClick={swiperFunction}
         ref={ref}
       >
-        <div
-          className={
-            active && swiperIndex != 0 ? styles.leftArrow : styles.rightArrow
-          }
-        >
-          {url && (
-            <Image
-              fill
-              src={url}
-              alt={image.alt ? image.alt : "An Image by Assaf Kimmel"}
-              style={{
-                objectFit: "contain",
-                objectPosition: "top",
-              }}
-            />
-          )}
-        </div>
+        {url && (
+          <Image
+            fill
+            src={url}
+            alt={image.alt ? image.alt : "An Image by Assaf Kimmel"}
+            style={{
+              objectFit: "contain",
+              objectPosition: "top",
+            }}
+          />
+        )}
       </div>
     </>
   );
