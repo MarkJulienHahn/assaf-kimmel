@@ -15,7 +15,7 @@
   backdrop-filter: blur(20px);
   border-radius: var(--widget-border-radius);
   background: var(--widget-color);
-  transition: all 0.2s ease-out;
+  transition: all 0.3s cubic-bezier(0.96, 0.09, 0.52, 0.98);
   max-height: calc(100vh - 2 * var(--space-S));
   overflow-y: scroll;
   overscroll-behavior: none;

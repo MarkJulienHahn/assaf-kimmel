@@ -20,7 +20,7 @@
 .sliderOuter {
   opacity: 0;
   animation: appear 0.5s ease-out;
-  animation-delay: 5s;
+  animation-delay: 2s;
   animation-fill-mode: forwards;
 }
 

@@ -73,6 +73,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
           delay={delay}
         />
       ))}
+      <p className="footer">© Assaf Kimmel, {new Date().getFullYear() }  </p>
     </div>
   );
 };

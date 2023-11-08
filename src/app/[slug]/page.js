@@ -1,5 +1,4 @@
 import Main from "../../../components/Main";
-import styles from "../home.module.css";
 import {
   getNews,
   getAbout,
@@ -16,7 +15,6 @@ export default async function Home({ params }) {
   const imprint = await getImprint();
 
   return (
-    <div className={styles.main}>
       <Main
         projects={projects}
         news={news}
@@ -25,7 +23,6 @@ export default async function Home({ params }) {
         imprint={imprint[0]}
         slug={params.slug}
       />
-    </div>
   );
 }
 
