@@ -123,6 +123,10 @@ h3 {
   transform: translate(0px, 7px);
 }
 
+.projectMobile {
+  display: none;
+}
+
 .footer {
   margin-top: 500px;
   padding: var(--space-S);
@@ -149,5 +153,13 @@ h3 {
     --PGM-font-size: 10.5px;
     --PGM-line-height: 15px;
     --PGM-letter-spacing: 0.5px;
+  }
+  .projectDesktop {
+    display: none;
+  }
+
+  .projectMobile {
+    padding-top: 400px;
+    display: block;
   }
 }

@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 
 import { useInView } from "react-intersection-observer";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import Widget from "./widget/Widget";
 import Project from "./Project";
+import ProjectMobile from "./ProjectMobile";
 
 const Main = ({ projects, news, about, contact, imprint, slug }) => {
   const [index, setIndex] = useState(1);
@@ -13,7 +15,9 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
   const [widgetContent, setWidgetContent] = useState(projects[0]);
   const [scrollTrigger, setScrollTrigger] = useState("");
 
-  const { ref, inView, entry } = useInView({
+  const { windowWidth } = useWindowDimensions();
+
+  const { ref, inView } = useInView({
     threshold: 0,
   });
 
@@ -61,19 +65,37 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
           top: "0",
         }}
       ></div>
-      {projects.map((project, i) => (
-        <Project
-          key={i}
-          i={i}
-          project={project}
-          index={index}
-          setIndex={setIndex}
-          setWidgetContent={setWidgetContent}
-          scrollTrigger={scrollTrigger}
-          delay={delay}
-        />
-      ))}
-      <p className="footer">© Assaf Kimmel, {new Date().getFullYear() }  </p>
+
+      <div className="projectDesktop">
+        {projects.map((project, i) => (
+          <Project
+            key={i}
+            i={i}
+            project={project}
+            index={index}
+            setIndex={setIndex}
+            setWidgetContent={setWidgetContent}
+            scrollTrigger={scrollTrigger}
+            delay={delay}
+          />
+        ))}
+      </div>
+      <div className="projectMobile">
+        {projects.map((project, i) => (
+          <ProjectMobile
+            key={i}
+            i={i}
+            project={project}
+            index={index}
+            setIndex={setIndex}
+            setWidgetContent={setWidgetContent}
+            scrollTrigger={scrollTrigger}
+            delay={delay}
+          />
+        ))}
+      </div>
+
+      <p className="footer">© Assaf Kimmel, {new Date().getFullYear()} </p>
     </div>
   );
 };

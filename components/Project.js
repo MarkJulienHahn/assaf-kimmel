@@ -3,7 +3,7 @@ import styles from "../components/project.module.css";
 
 import { useInView } from "react-intersection-observer";
 
-import ProjectSwiperInner from "./ProjectSwiperInner";
+import ProjectSwiperInner from "../components/ProjectSwiperInner";
 
 const Project = ({
   setIndex,
@@ -18,7 +18,7 @@ const Project = ({
   const [translation, setTranslation] = useState(0);
   const [sliderTrigger, setSliderTrigger] = useState(null);
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0.6,
   });
 
