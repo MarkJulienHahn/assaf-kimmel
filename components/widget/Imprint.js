@@ -30,7 +30,7 @@ const Imprint = ({ imprint }) => {
           {imprint?.privacy && <PortableText content={imprint?.privacy} />}
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
