@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
 const Intro1 = ({ setIndex, index }) => {
-  next = () => {
+  const nextFct = () => {
     setIndex(index + 1);
   };
 
   useEffect(() => {
-    setTimeout(next, 1000);
+    setTimeout(nextFct, 1000);
   });
 
   return <div>Assaf&nbsp;Kimmel</div>;
