@@ -535,8 +535,6 @@
   .aboutContent,
   .imprintContent {
     max-height: unset;
-  }
-  .imprintContent {
     width: calc(100vw - 4 * var(--space-S));
   }
   .information {

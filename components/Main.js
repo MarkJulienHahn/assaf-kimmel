@@ -8,7 +8,7 @@ import Widget from "./widget/Widget";
 import Project from "./Project";
 
 const Main = ({ projects, news, about, contact, imprint, slug }) => {
-  const [index, setIndex] = useState(4);
+  const [index, setIndex] = useState(1);
   const [delay, setDelay] = useState(true);
   const [widgetContent, setWidgetContent] = useState(projects[0]);
   const [scrollTrigger, setScrollTrigger] = useState("");
