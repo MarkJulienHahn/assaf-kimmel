@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import styles from "./widget.module.css";
 
 const Intro2 = ({ setIndex, index }) => {
-  next = () => {
+  const nextFct = () => {
     setIndex(index + 1);
   };
 
   useEffect(() => {
-    setTimeout(next, 4000);
+    setTimeout(nextFct, 4000);
   });
   return (
     <div className={styles.information}>
