@@ -2,12 +2,18 @@ import { useEffect } from "react";
 import styles from "./widget.module.css";
 
 import PortableText from "react-portable-text";
-import { SlArrowRight } from "react-icons/sl";
+import { SlArrowRight, SlArrowDown } from "react-icons/sl";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useThreeDig } from "../../hooks/useThreeDig";
 
 const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
+  const { windowWidth } = useWindowDimensions();
   useEffect(() => () => setHovered(false), []);
+
+  useEffect(() => {
+    windowWidth <= 600 && setHovered(true);
+  }, [windowWidth]);
 
   return (
     <div
@@ -15,7 +21,7 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={styles.left}></div>
+      <div className={styles.left} style={{ paddingBottom: "32px" }}></div>
       <div className={styles.inner} onClick={() => setIndex(5)}>
         <div className={styles.projectWrapper}>
           <div className={styles.projectHead}>
@@ -26,6 +32,9 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
             <div className={styles.projectArrow}>
               <SlArrowRight />
             </div>
+            <div className={styles.projectArrowMobile}>
+              <SlArrowDown />
+            </div>
           </div>
 
           {hovered && (
@@ -34,6 +43,10 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
             </div>
           )}
         </div>
+      </div>
+
+      <div className={styles.projectTextMobile} onClick={() => setIndex(5)}>
+        <PortableText content={widgetContent.shortDescription} />
       </div>
     </div>
   );

@@ -122,3 +122,22 @@ h3 {
   width: 28px !important;
   transform: translate(0px, 7px);
 }
+
+@media screen and (max-width: 600px) {
+  :root {
+    --widget-border-radius: 3px;
+  
+    --space-S: 10px;
+    --space-M: 20px;
+    --space-L: 60px;
+  
+    --PG-font-size: 13px;
+    --PG-line-height: 17px;
+    --PG-letter-spacing: 0.35px;
+    --PG-word-spacing: -1.7px;
+  
+    --PGM-font-size: 10.5px;
+    --PGM-line-height: 15px;
+    --PGM-letter-spacing: 0.5px;
+  }
+}

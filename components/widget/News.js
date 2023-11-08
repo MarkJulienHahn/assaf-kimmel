@@ -3,6 +3,7 @@ import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import styles from "./widget.module.css";
 
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { use100vh } from "react-div-100vh";
 
 import NewsEntry from "./NewsEntry";
 
@@ -15,6 +16,7 @@ const News = ({
   setScrollTrigger,
 }) => {
   const { windowWidth } = useWindowDimensions();
+  const height = use100vh();
 
   useEffect(() => {
     history.replaceState(null, "", `/`);
@@ -36,7 +38,7 @@ const News = ({
       className={styles.outer}
       style={
         extended && windowWidth <= 600
-          ? { height: "calc(100vh - 2* var(--space-S)" }
+          ? { height: `calc(${height}px - 2* var(--space-S)` }
           : { height: "auto" }
       }
     >
@@ -47,8 +49,8 @@ const News = ({
           maxHeight: !extended
             ? "auto"
             : windowWidth <= 600
-            ? "calc(100vh - 125px"
-            : "calc(100vh - 50px",
+            ? `calc(${height}px - 125px`
+            : `calc(${height}px - 50px`,
         }}
       >
         <div className={styles.inner}>
