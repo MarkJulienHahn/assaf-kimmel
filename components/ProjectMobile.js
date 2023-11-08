@@ -1,12 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../components/project.module.css";
 
+import ProjectMobileSwiper from "../components/ProjectMobileSwiper";
+
 import { useInView } from "react-intersection-observer";
-import { urlFor } from "../hooks/useImageUrlBuilder";
-
-import Image from "next/image";
-
-import SwiperInner from "./widget/SwiperInner";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -71,21 +68,11 @@ const Project = ({
           <Swiper spaceBetween={5} slidesPerView={"auto"}>
             {project.images.map((image, i) => (
               <SwiperSlide key={i}>
-                <div style={{ width: "100vw", height: "100vw" }}>
-                  <Image
-                    fill
-                    src={urlFor(image.asset.url).width(1000).quality(50).url()}
-                    alt={image.alt}
-                    style={{
-                      objectFit: "contain",
-                      objectPosition: "bottom left",
-                      // background:
-                      //   image.asset.metadata.palette.vibrant.background,
-                      padding: "0 var(--space-S)",
-                    }}
-                    // ref={ref}
-                  />
-                </div>
+                <ProjectMobileSwiper
+                  image={image}
+                  i={i}
+                  setSwiperIndex={setSwiperIndex}
+                />
               </SwiperSlide>
             ))}
           </Swiper>

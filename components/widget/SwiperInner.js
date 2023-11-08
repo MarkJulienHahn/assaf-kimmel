@@ -1,8 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import styles from "./widget.module.css";
-import { useSwiper } from "swiper/react";
-import { useSwiperSlide } from "swiper/react";
+import { useSwiper, useSwiperSlide } from "swiper/react";
 import { urlFor } from "../../hooks/useImageUrlBuilder";
 
 const SwiperInner = ({
@@ -37,7 +36,7 @@ const SwiperInner = ({
       //   maxWidth: "calc(100vw - 2*var(--space-S))",
       //   maxHeight: ref.current?.clientHeight,
       // }}
-      // onClick={() => swiper.slideNext()}
+      onClick={() => swiper.slideNext()}
     >
       <Image
         src={urlFor(image.asset.url).height(500).quality(50).url()}
