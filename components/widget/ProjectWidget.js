@@ -21,7 +21,14 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className={styles.left} style={{ paddingBottom: "32px" }}></div>
+      <div
+        className={styles.left}
+        // style={
+        //   windowWidth <= 600
+        //     ? { paddingBottom: "32px" }
+        //     : { paddingBottom: "0" }
+        // }
+      ></div>
       <div className={styles.inner} onClick={() => setIndex(5)}>
         <div className={styles.projectWrapper}>
           <div className={styles.projectHead}>

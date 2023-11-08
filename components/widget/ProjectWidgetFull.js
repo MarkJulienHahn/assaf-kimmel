@@ -17,7 +17,11 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
       className={styles.outerProject}
       style={
         windowWidth <= 600
-          ? { height: `calc(${height}px - 2 * var(--space-S))` }
+          ? {
+              height: `calc(${height}px - 2 * var(--space-S))`,
+              display: "block",
+              paddingLeft: "50px",
+            }
           : { height: "auto" }
       }
     >
@@ -25,7 +29,7 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
       <div className={styles.inner}>
         <div className={styles.projectInner}>
           <div className={styles.projectWrapperFull}>
-            <div className={styles.projectHead}>
+            <div className={styles.projectHead} st>
               <div className={styles.projectIndex}>
                 {useThreeDig(widgetContent.i)}
               </div>

@@ -536,6 +536,9 @@
   .imprintContent {
     max-height: unset;
   }
+  .imprintContent {
+    width: calc(100vw - 4 * var(--space-S));
+  }
   .information {
     display: block;
     width: calc(100vw - 2 * var(--space-S));
@@ -578,7 +581,10 @@
     display: block;
     overflow: scroll;
   }
-
+  .projectWrapper {
+    width: unset;
+    /* background: red;   */
+  }
   .projectCreditsMobile {
     padding-top: var(--space-M);
     padding-bottom: var(--space-S);
