@@ -29,7 +29,7 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
     setScrollTrigger(0);
   };
 
-  const useThreeDig = (n) => {
+  const threeDig = (n) => {
     if (n + 1 < 10) return `00${n + 1}`;
     else return `0${n + 1}`;
   };
@@ -91,7 +91,7 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
               onClick={() => scrollTriggerFct(project.slug.current)}
             >
               <div className={styles.overviewHead}>
-                <p className={styles.overviewIndex}>{() => useThreeDig(i)}</p>
+                <p className={styles.overviewIndex}>{threeDig(i)}</p>
                 <p>{project.title}</p>
               </div>
               <div className={styles.overviewTextWrapper}>
