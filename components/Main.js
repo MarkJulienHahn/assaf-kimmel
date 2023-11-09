@@ -9,7 +9,7 @@ import Project from "./Project";
 import ProjectMobile from "./ProjectMobile";
 
 const Main = ({ projects, news, about, contact, imprint, slug }) => {
-  const [index, setIndex] = useState(6);
+  const [index, setIndex] = useState(1);
   const [delay, setDelay] = useState(true);
   const [widgetContent, setWidgetContent] = useState(projects[0]);
   const [scrollTrigger, setScrollTrigger] = useState("");
