@@ -38,7 +38,7 @@ const News = ({
       className={styles.outer}
       style={
         extended && windowWidth <= 600
-          ? { height: `calc(${height}px - 2* var(--space-S)` }
+          ? { height: `calc(${height}px - 80px` }
           : { height: "auto" }
       }
     >

@@ -18,7 +18,7 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
       style={
         windowWidth <= 600
           ? {
-              height: `calc(${height}px - 2 * var(--space-S))`,
+              height: `calc(${height}px - 40px)`,
               display: "block",
               paddingLeft: "50px",
             }

@@ -18,7 +18,7 @@ const Imprint = ({ imprint }) => {
       className={styles.outer}
       style={
         windowWidth <= 600
-          ? { height: `calc(${height}px - 75px` }
+          ? { height: `calc(${height}px - 80px` }
           : { height: "auto" }
       }
     >
