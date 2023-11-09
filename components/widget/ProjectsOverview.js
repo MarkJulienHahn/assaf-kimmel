@@ -87,7 +87,7 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
               onClick={() => scrollTriggerFct(project.slug.current)}
             >
               <div className={styles.overviewHead}>
-                <p className={styles.overviewIndex}>{useThreeDig(i)}</p>
+                <p className={styles.overviewIndex}>{() => useThreeDig(i)}</p>
                 <p>{project.title}</p>
               </div>
               <div className={styles.overviewTextWrapper}>
