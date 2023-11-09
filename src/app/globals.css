@@ -162,4 +162,8 @@ h3 {
     padding-top: 400px;
     display: block;
   }
+  .footer {
+    margin-top: 200px;
+    padding-bottom: var(--space-M);
+  }
 }

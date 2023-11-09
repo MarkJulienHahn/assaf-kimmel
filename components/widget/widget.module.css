@@ -228,6 +228,7 @@
   animation-fill-mode: forwards;
   opacity: 0;
   border-bottom: var(--space-S);
+  overflow: hidden;
 }
 
 .outerProjSmall:hover {
@@ -408,8 +409,10 @@
 
 .overviewInner {
   display: flex;
-  overflow: scroll;
+  overflow: hidden;
   scrollbar-width: none;
+  height: calc(100vh - 4 * var(--space-S));
+  width: calc(100% - 80px);
 }
 
 .overviewColumn {
@@ -424,6 +427,7 @@
   animation-fill-mode: forwards;
   opacity: 0;
   cursor: pointer;
+  transition: transform 0.5s ease;
 }
 
 .overviewColumn:hover {
@@ -455,6 +459,33 @@
   margin-bottom: 5px;
 }
 
+.overviewInnerMobile {
+  display: none;
+}
+
+.overviewNextButton,
+.overviewPrevButton {
+  position: absolute;
+  height: calc(100vh - 6 * var(--space-S));
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.overviewNextButton {
+  right: 0;
+}
+
+.overviewPrevButton {
+  left: 0;
+}
+
+.overviewNextButton:hover,
+.overviewPrevButton:hover {
+  color: var(--primary);
+}
 /* IMPRINT */
 
 .imprintContent {
@@ -495,8 +526,13 @@
   padding-bottom: 20px;
 }
 
+.overviewImagesMobile {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
-  .outer {
+  .outer,
+  .outerFull {
     flex-direction: column;
     margin-top: 40px;
     width: calc(100vw - 3 * var(--space-S));
@@ -549,7 +585,10 @@
   .projectArrow,
   .projectImagesWrapper,
   .projectTextFull,
-  .projectCredits {
+  .projectCredits,
+  .overviewNextButton,
+  .overviewPrevButton,
+  .overviewImagesWrapper {
     display: none;
   }
   .projectTextMobile {
@@ -566,10 +605,11 @@
     opacity: 0;
   }
   .projectArrowMobile {
-    display: block;
-    position: absolute;
-    right: var(--space-S);
-    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw - 4 * var(--space-S));
+    height: 30px;
     cursor: pointer;
   }
   .projectContentMobile {
@@ -581,10 +621,48 @@
   }
   .projectWrapper {
     width: unset;
-    /* background: red;   */
   }
   .projectCreditsMobile {
     padding-top: var(--space-M);
     padding-bottom: var(--space-S);
+  }
+  .overviewInner {
+    display: none;
+    overflow: scroll;
+  }
+  .overviewInnerMobile {
+    display: block;
+  }
+  .overviewColumn {
+    height: auto;
+    margin-bottom: 30px;
+    width: calc(100vw - 4 * var(--space-S));
+    overflow-x: hidden;
+  }
+
+  .overviewText {
+    max-height: 45px;
+    overflow: hidden;
+  }
+  .overviewTextWrapper::after {
+    content: "[…]";
+    font-family: "ProtestMono";
+    font-size: var(--PGM-font-size);
+    line-height: var(--PGM-line-height);
+    letter-spacing: var(--PGM-letter-spacing);
+    font-variation-settings: "wght" 70;
+  }
+  .overviewImagesMobile {
+    display: block;
+    padding-top: var(--space-S);
+    width: 100%;
+  }
+  .link span:hover,
+  .overviewColumn:hover,
+  .outerProjSmall:hover,
+  .text a:hover,
+  .contactWrapper a:hover,
+  .outerProjSmall:hover {
+    color: inherit;
   }
 }

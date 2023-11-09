@@ -3,19 +3,16 @@
 import { useState, useEffect } from "react";
 
 import { useInView } from "react-intersection-observer";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import Widget from "./widget/Widget";
 import Project from "./Project";
 import ProjectMobile from "./ProjectMobile";
 
 const Main = ({ projects, news, about, contact, imprint, slug }) => {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(6);
   const [delay, setDelay] = useState(true);
   const [widgetContent, setWidgetContent] = useState(projects[0]);
   const [scrollTrigger, setScrollTrigger] = useState("");
-
-  const { windowWidth } = useWindowDimensions();
 
   const { ref, inView } = useInView({
     threshold: 0,

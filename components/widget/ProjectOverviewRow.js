@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import styles from "./widget.module.css";
 import PortableText from "react-portable-text";
 
@@ -6,7 +8,21 @@ import { useThreeDig } from "../../hooks/useThreeDig";
 
 import Image from "next/image";
 
-const ProjectOverviewRow = ({ project, i, setIndex, setScrollTrigger }) => {
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+import { useSwiper, useSwiperSlide } from "swiper/react";
+
+const ProjectOverviewRow = ({
+  project,
+  i,
+  setIndex,
+  setScrollTrigger,
+  left,
+  right,
+}) => {
+  const swiper = useSwiper();
+  const swiperSlide = useSwiperSlide();
   const triggerCleanup = () => {
     setScrollTrigger(0);
   };
@@ -16,14 +32,21 @@ const ProjectOverviewRow = ({ project, i, setIndex, setScrollTrigger }) => {
     setTimeout(triggerCleanup, 500);
   };
 
+  useEffect(() => {
+    swiperSlide.isActive &&left && swiper.slidePrev();
+    swiperSlide.isActive &&right && swiper.slideNext();
+  }, [left, right]);
+
   return (
     <div key={i} className={styles.overviewColumn} onClick={scrollTriggerFct}>
       <div className={styles.overviewHead}>
         <p className={styles.overviewIndex}>{useThreeDig(i)}</p>
         <p>{project.title}</p>
       </div>
-      <div className={styles.overviewText}>
-        <PortableText content={project.shortDescription} />
+      <div className={styles.overviewTextWrapper}>
+        <div className={styles.overviewText}>
+          <PortableText content={project.shortDescription} />
+        </div>
       </div>
       <div className={styles.overviewImagesWrapper}>
         {project.images.map((image, i) => (
@@ -66,6 +89,7 @@ const ProjectOverviewRow = ({ project, i, setIndex, setScrollTrigger }) => {
           </>
         ))}
       </div>
+
     </div>
   );
 };
