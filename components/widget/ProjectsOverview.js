@@ -9,7 +9,6 @@ import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { use100vh } from "react-div-100vh";
 import { urlFor } from "../../hooks/useImageUrlBuilder";
-import { useThreeDig } from "../../hooks/useThreeDig";
 
 import Image from "next/image";
 
@@ -28,6 +27,11 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
 
   const triggerCleanup = () => {
     setScrollTrigger(0);
+  };
+
+  const useThreeDig = (n) => {
+    if (n + 1 < 10) return `00${n + 1}`;
+    else return `0${n + 1}`;
   };
 
   useEffect(() => {
