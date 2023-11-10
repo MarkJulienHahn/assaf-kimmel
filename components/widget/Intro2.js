@@ -7,7 +7,7 @@ const Intro2 = ({ setIndex, index }) => {
   };
 
   useEffect(() => {
-    setTimeout(nextFct, 4000);
+    setTimeout(nextFct, 2500);
   });
   return (
     <div className={styles.information}>
