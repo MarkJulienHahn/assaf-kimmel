@@ -17,6 +17,7 @@ const Project = ({
   const [width, setWidth] = useState(null);
   const [translation, setTranslation] = useState(0);
   const [sliderTrigger, setSliderTrigger] = useState(null);
+  const [sliderDelay, setSliderDelay] = useState(false);
 
   const { ref, inView } = useInView({
     threshold: 0.6,
@@ -24,6 +25,10 @@ const Project = ({
 
   const anchorRef = useRef();
   const wrapperRef = useRef();
+
+  const handleSliderDelay = () => {
+    setSliderDelay(false);
+  };
 
   const handleSliderTrigger = (dir) => {
     const resetSliderTrigger = () => {
@@ -49,6 +54,10 @@ const Project = ({
   }, [inView]);
 
   useEffect(() => {
+    translation && setSliderDelay(true), setTimeout(handleSliderDelay, 701);
+  }, [translation]);
+
+  useEffect(() => {
     !delay && anchorRef.current.scrollIntoView({ behavior: "smooth" }),
       !delay && setIndex(4);
   }, [swiperIndex]);
@@ -63,32 +72,38 @@ const Project = ({
     Object.assign(project, { i: i });
   }, []);
 
-  // console.log(swiperIndex, translation);
-
   return (
     <>
       <div className={styles.sliderOuter}>
         <div className={styles.sliderControls}>
           <div
             className={swiperIndex != 0 && styles.leftArrow}
-            onClick={() => handleSliderTrigger("left")}
+            onClick={
+              !sliderDelay ? () => handleSliderTrigger("left") : () => {}
+            }
           ></div>
           <div
             className={
               swiperIndex < project.images.length - 1 && styles.rightArrow
             }
-            onClick={() => handleSliderTrigger("right")}
+            onClick={
+              !sliderDelay ? () => handleSliderTrigger("right") : () => {}
+            }
           ></div>
         </div>
         <div
           className={styles.sliderWrapper}
           style={{
+            height: "92vh",
             width: width,
             transform: swiperIndex ? `translateX(-${translation}px)` : "",
           }}
         >
           <div className={styles.anchor} ref={anchorRef}></div>
-          <div ref={wrapperRef} style={{ display: "flex" }}>
+          <div
+            ref={wrapperRef}
+            style={{ display: "flex", alignItems: "flex-end" }}
+          >
             {project.images.map((image, i) => (
               <ProjectSwiperInner
                 key={i}

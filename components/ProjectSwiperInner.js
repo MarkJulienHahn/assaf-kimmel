@@ -12,21 +12,22 @@ const ProjectSwiperInner = ({
   setTranslation,
   sliderTrigger,
   translation,
-  length
+  length,
 }) => {
   const [active, setActive] = useState(true);
-  const [last, setLast] = useState(false)
+  const [last, setLast] = useState(false);
   const [url, setUrl] = useState(null);
-  const [position, setPosition] = useState({ next: 0, prev: 0 });
   const [currentPosition, setCurrentPosition] = useState(0);
   const [currentWidth, setCurrentWidth] = useState(0);
+  const [initial, setInitial] = useState(true);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   const ref = useRef();
 
   const { windowWidth } = useWindowDimensions();
 
   const getImageWidth = (height) => {
-    return `${height * image.asset.metadata.dimensions.aspectRatio}vh`;
+    return height * image.asset.metadata.dimensions.aspectRatio;
   };
   const getUrl = () => {
     return urlFor(image.asset.url)
@@ -37,28 +38,6 @@ const ProjectSwiperInner = ({
 
   // SWIPER FUNCTIONS
 
-  const swiperFunction = () => {
-    if (active && swiperIndex != 0) {
-      setTranslation(position.next - currentPosition), setSwiperIndex(i - 1);
-    } else if (i == 0) {
-      setTranslation(currentWidth), setSwiperIndex(i + 1);
-    } else setTranslation(position.next - 40), setSwiperIndex(i);
-  };
-
-  const nextFct = async () => {
-    setPosition((prevState) => ({
-      ...prevState,
-      next: ref.current?.getBoundingClientRect().left,
-    }));
-  };
-
-  const prevFct = () => {
-    setPosition((prevState) => ({
-      ...prevState,
-      prev: position.next - currentPosition,
-    }));
-  };
-
   const currentFct = () => {
     i - 1 == swiperIndex &&
       setCurrentPosition(ref.current?.getBoundingClientRect().left),
@@ -68,25 +47,35 @@ const ProjectSwiperInner = ({
   useEffect(() => {
     i == swiperIndex ? setActive(true) : setActive(false);
     i == length - 1 ? setLast(true) : setLast(false);
-    setTimeout(currentFct, 500);
-  }, [swiperIndex]);
+    setTimeout(currentFct, 700);
+  }, [swiperIndex, windowWidth]);
 
   useEffect(() => {
-    setTimeout(nextFct, 500);
-    setTimeout(prevFct, 500);
     i == swiperIndex ? setActive(true) : setActive(false);
     setUrl(getUrl());
   }, []);
 
   useEffect(() => {
-    if (active && sliderTrigger == "right" && i == 0) {
-      setTranslation(currentWidth), setSwiperIndex(i + 1);
+    if (active && sliderTrigger == "right" && i == 0 && !initial) {
+      setTranslation(currentWidth + 5),
+        setSwiperIndex(i + 1),
+        setInitial(false);
+    }
+
+    if (active && sliderTrigger == "right" && i == 0 && initial) {
+      setTranslation(currentWidth * 0.3 + 5),
+        setSwiperIndex(i + 1),
+        setInitial(false);
     } else if (active && sliderTrigger == "right" && i != 0 && !last) {
-      setTranslation(translation + currentWidth + 5), setSwiperIndex(i + 1);
+      setTranslation(translation + currentWidth + 5),
+        setSwiperIndex(i + 1),
+        setInitial(false);
     } else if (active && sliderTrigger == "left" && i == 0) {
       return;
     } else if (active && sliderTrigger == "left" && i != 0) {
-      setTranslation(position.next - currentPosition - 5), setSwiperIndex(i - 1);
+      setTranslation(translation - currentPosition * 0.3 + 10),
+        setSwiperIndex(i - 1),
+        setInitial(false);
     } else return;
   }, [sliderTrigger]);
 
@@ -95,14 +84,21 @@ const ProjectSwiperInner = ({
       <div
         className={styles.imageWrapper}
         style={{
-          height: "92vh",
-          width: getImageWidth(92),
+          height: active
+            ? "92vh"
+            : `${
+                (getImageWidth(92) * 0.3) /
+                image.asset.metadata.dimensions.aspectRatio
+              }vh`,
+          width: active
+            ? `${getImageWidth(92)}vh`
+            : `${getImageWidth(92) * 0.3}vh`,
           position: "relative",
-          transform: active ? "scale(1)" : "scale(0.3)",
           transformOrigin: "bottom left",
-          background: image.asset.metadata.palette.vibrant.background,
+          background: !imgLoaded
+            ? image.asset.metadata.palette.vibrant.background
+            : "none",
           marginLeft: active ? "var(--space-M)" : "5px",
-          opacity: i > swiperIndex + 1 ? "0" : "1",
         }}
         ref={ref}
       >
@@ -115,6 +111,8 @@ const ProjectSwiperInner = ({
               objectFit: "contain",
               objectPosition: "top",
             }}
+            onLoad={() => setImgLoaded(true)}
+            priority={swiperIndex + 3 <= i ? "true" : "false"}
           />
         )}
       </div>

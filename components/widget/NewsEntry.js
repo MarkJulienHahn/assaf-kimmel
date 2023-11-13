@@ -33,7 +33,7 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
     i != 0 && (
       <>
         <div className={styles.date}>
-          {entry.date ? dateFormatted(entry.date) : "——/——"}
+          {entry.date ? dateFormatted(entry.date) : ""}
         </div>
         <div className={styles.newsContent}>
           <div className={styles.headline}>
