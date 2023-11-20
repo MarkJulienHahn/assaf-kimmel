@@ -6,6 +6,8 @@ import { useInView } from "react-intersection-observer";
 import ProjectSwiperInnerDesktop from "./ProjectSwiperInnerDesktop";
 import ProjectSwiperInnerTablet from "./ProjectSwiperInnerTablet";
 
+import useWindowDimensions from "../hooks/useWindowDimensions";
+
 const Project = ({
   setIndex,
   project,
@@ -73,6 +75,10 @@ const Project = ({
     history.replaceState(null, "", `/${project.slug.current}`);
   };
 
+  const handleResize = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     !delay && inView && changeWidget();
   }, [inView]);
@@ -94,6 +100,14 @@ const Project = ({
   useEffect(() => {
     setWidth(wrapperRef.current?.clientWidth);
     Object.assign(project, { i: i });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (

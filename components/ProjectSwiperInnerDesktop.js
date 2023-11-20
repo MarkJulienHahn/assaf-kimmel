@@ -61,7 +61,6 @@ const ProjectSwiperInnerDesktop = ({
         setSwiperIndex(i + 1),
         setInitial(false);
     }
-
     if (active && sliderTrigger == "right" && i == 0 && initial) {
       setTranslation(currentWidth * 0.3 + 5),
         setSwiperIndex(i + 1),
