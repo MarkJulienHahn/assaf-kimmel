@@ -30,8 +30,12 @@ const News = ({
   );
 
   useEffect(() => {
-    windowWidth <= 600 && setHovered(true);
+    windowWidth <= 1400 && setHovered(true);
   }, [windowWidth]);
+
+  useEffect(() => {
+    windowWidth <= 1400 && setHovered(true);
+  }, []);
 
   return (
     <div

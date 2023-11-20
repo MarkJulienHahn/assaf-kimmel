@@ -530,6 +530,12 @@
   display: none;
 }
 
+@media screen and (max-width: 1400px) {
+  .wrapperNews:hover {
+    padding-bottom: 0 !important;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .outer,
   .outerFull {

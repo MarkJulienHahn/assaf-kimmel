@@ -3,7 +3,8 @@ import styles from "../components/project.module.css";
 
 import { useInView } from "react-intersection-observer";
 
-import ProjectSwiperInner from "../components/ProjectSwiperInner";
+import ProjectSwiperInnerDesktop from "./ProjectSwiperInnerDesktop";
+import ProjectSwiperInnerTablet from "./ProjectSwiperInnerTablet";
 
 const Project = ({
   setIndex,
@@ -18,6 +19,29 @@ const Project = ({
   const [translation, setTranslation] = useState(0);
   const [sliderTrigger, setSliderTrigger] = useState(null);
   const [sliderDelay, setSliderDelay] = useState(false);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
+  // Function to handle touch start event
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  // Function to handle touch end event and trigger swipe action if applicable
+  const handleTouchEnd = (e) => {
+    if (touchStartX && touchEndX) {
+      const touchDifference = touchEndX - touchStartX;
+      const minSwipeDistance = 50; // Adjust this threshold as needed
+
+      if (touchDifference > minSwipeDistance) {
+        // Perform swipe-left action here
+        handleSliderTrigger("left");
+      } else handleSliderTrigger("right");
+    }
+    // Reset touch start and end positions
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
 
   const { ref, inView } = useInView({
     threshold: 0.6,
@@ -75,7 +99,14 @@ const Project = ({
   return (
     <>
       <div className={styles.sliderOuter}>
-        <div className={styles.sliderControls}>
+        <div
+          className={styles.sliderControls}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={(e) => {
+            setTouchEndX(e.changedTouches[0].clientX);
+            handleTouchEnd(e);
+          }}
+        >
           <div
             className={swiperIndex != 0 && styles.leftArrow}
             onClick={
@@ -105,17 +136,34 @@ const Project = ({
             style={{ display: "flex", alignItems: "flex-end" }}
           >
             {project.images.map((image, i) => (
-              <ProjectSwiperInner
-                key={i}
-                image={image}
-                swiperIndex={swiperIndex}
-                setSwiperIndex={setSwiperIndex}
-                setTranslation={setTranslation}
-                translation={translation}
-                sliderTrigger={sliderTrigger}
-                length={project.images.length}
-                i={i}
-              />
+              <>
+                <div className={styles.desktop}>
+                  <ProjectSwiperInnerDesktop
+                    key={i}
+                    image={image}
+                    swiperIndex={swiperIndex}
+                    setSwiperIndex={setSwiperIndex}
+                    setTranslation={setTranslation}
+                    translation={translation}
+                    sliderTrigger={sliderTrigger}
+                    length={project.images.length}
+                    i={i}
+                  />
+                </div>
+                <div className={styles.tablet}>
+                  <ProjectSwiperInnerTablet
+                    key={i}
+                    image={image}
+                    swiperIndex={swiperIndex}
+                    setSwiperIndex={setSwiperIndex}
+                    setTranslation={setTranslation}
+                    translation={translation}
+                    sliderTrigger={sliderTrigger}
+                    length={project.images.length}
+                    i={i}
+                  />
+                </div>
+              </>
             ))}
           </div>
         </div>

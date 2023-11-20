@@ -4,7 +4,7 @@ import { urlFor } from "../hooks/useImageUrlBuilder";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import Image from "next/image";
 
-const ProjectSwiperInner = ({
+const ProjectSwiperInnerDesktop = ({
   i,
   image,
   setSwiperIndex,
@@ -120,4 +120,4 @@ const ProjectSwiperInner = ({
   );
 };
 
-export default ProjectSwiperInner;
+export default ProjectSwiperInnerDesktop;

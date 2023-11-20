@@ -13,6 +13,8 @@ import About from "./About";
 import Contact from "./Contact";
 import Imprint from "./Imprint";
 
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+
 import styles from "./widget.module.css";
 
 import { BurgerVeggie } from "react-icons-animated";
@@ -33,6 +35,8 @@ const Widget = ({
     width: 0,
     height: null,
   });
+
+  const { windowWidth } = useWindowDimensions();
 
   const contentRef = useRef();
   const [isClosed, setIsClosed] = useState(false);
@@ -109,7 +113,9 @@ const Widget = ({
       className={`${styles.wrapper} ${index == 3 ? styles.wrapperNews : ""}`}
       style={{ width: widgetDimensions.width, height: widgetDimensions.height }}
       onMouseEnter={!extended ? () => setHovered(true) : () => {}}
-      onMouseLeave={!extended ? () => setHovered(false) : () => {}}
+      onMouseLeave={
+        !extended && windowWidth > 1400 ? () => setHovered(false) : () => {}
+      }
     >
       {index != 1 && index != 2 && (
         <div

@@ -8,6 +8,10 @@
   margin-left: var(--space-M);
 }
 
+.tablet {
+  display: none;
+}
+
 .index {
   font-family: "ProtestMono";
   font-size: var(--PGM-font-size);
@@ -71,9 +75,20 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .sliderWrapper {
-
     margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .sliderWrapper {
+    margin-top: 0px;
+  }
+  .desktop {
+    display: none;
+  }
+  .tablet {
+    display: block;
   }
 }

@@ -11,7 +11,7 @@ const Intro2 = ({ setIndex, index }) => {
   });
   return (
     <div className={styles.information}>
-      <div>Assaf&nbsp;Kimmel</div>
+      <div>STUDIO&nbsp;ASSAF&nbsp;KIMMEL</div>
       <div>
         (b. 1990. Israel) is an architect based in Berlin, working across the
         fields of architecture, installation art, fashion, performance and
