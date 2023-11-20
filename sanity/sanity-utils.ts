@@ -17,14 +17,14 @@ export async function getNews() {
 export async function getProjects() {
   return client.fetch(
     groq`*[_type == "projects"]|order(orderRank){"images": images[]{alt, "asset": asset->{...}
-  }, shortDescription, description, title, credits, slug}`
+  }, shortDescription, twoLineDescription, description, title, credits, slug}`
   );
 }
 
 export async function getAbout() {
   return client.fetch(
     groq`*[_type == "about"]{"image": image{alt, "asset": asset->{...}
-  }, text}`
+  }, text, loadingText}`
   );
 }
 export async function getContact() {

@@ -264,12 +264,16 @@
   display: none;
 }
 
-.projectText {
+.projectText,
+.projectTextTwoLine {
   font-family: "ProtestMono";
   font-size: var(--PGM-font-size);
   line-height: var(--PGM-line-height);
   letter-spacing: var(--PGM-letter-spacing);
   font-variation-settings: "wght" 70;
+}
+
+.projectTextTwoLine {
   animation: fadeIn 0.2s ease-in;
   animation-delay: 0.2s;
   animation-fill-mode: forwards;

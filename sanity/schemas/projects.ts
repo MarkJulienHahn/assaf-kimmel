@@ -19,6 +19,22 @@ export default defineType({
       options: { source: "title" },
       validation: Rule => Rule.required().warning('A unique slug is required. Please just click "generate" and it gets generated automatically from the title.')
     },
+
+    {
+      name: "twoLineDescription",
+      title: "Two Line Description",
+      type: "array",
+      of: [{
+        type: "block",
+        styles: [{ title: "Normal", value: "normal" }],
+        lists: [],
+        marks: {
+          decorators: [{ title: "Emphasis", value: "em" }],
+        },
+      }],
+      description: "A sentence of maximum 67 characters will be a two-line description."
+    },
+
     {
       name: "shortDescription",
       title: "Short Description",
@@ -31,7 +47,7 @@ export default defineType({
           decorators: [{ title: "Emphasis", value: "em" }],
         },
       }],
-      validation: Rule => Rule.required().warning('We need a short description of a maximum of 200 characters')
+      validation: Rule => Rule.required().warning("Please enter a short description of a maximum of 400 characters")
 
     },
 

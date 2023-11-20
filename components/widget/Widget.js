@@ -46,7 +46,7 @@ const Widget = ({
   const array = [
     <Menu key={1} setIndex={setIndex} />,
     <Intro1 key={2} setIndex={setIndex} index={index} />,
-    <Intro2 key={3} setIndex={setIndex} index={index} />,
+    <Intro2 key={3} setIndex={setIndex} index={index} about={about} />,
     <News
       key={4}
       news={news}

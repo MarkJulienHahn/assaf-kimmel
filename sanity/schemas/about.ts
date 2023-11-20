@@ -11,6 +11,23 @@ export default defineType({
       type: "string",
       hidden: true
     },
+
+    {
+      name: "loadingText",
+      title: "Loading Text",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          styles: [{ title: "Normal", value: "normal" }],
+          lists: [],
+          marks: {
+            decorators: [{ title: "Emphasis", value: "em" }],
+          },
+        },
+      ],
+    },
+
     {
       name: "text",
       title: "Text",
