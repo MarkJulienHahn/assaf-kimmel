@@ -18,10 +18,6 @@ const News = ({
   const { windowWidth } = useWindowDimensions();
   const height = use100vh();
 
-  useEffect(() => {
-    history.replaceState(null, "", `/`);
-  }, []);
-
   useEffect(
     () => () => {
       setHovered(false), setExtended(false);
