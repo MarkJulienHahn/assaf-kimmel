@@ -318,6 +318,10 @@
   padding-bottom: 5px;
 }
 
+.projectCredits {
+  margin-left: 20px;
+}
+
 .projectIndex,
 .projectCreditsHead {
   font-family: "ProtestMono";

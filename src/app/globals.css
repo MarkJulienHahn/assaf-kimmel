@@ -137,6 +137,10 @@ h3 {
   font-variation-settings: "wght" 70;
 }
 
+.projectDesktop {
+  padding-top: 200px;
+}
+
 @media screen and (max-width: 1000px) {
   :root {
     --widget-border-radius: 3px;
@@ -160,7 +164,7 @@ h3 {
 
   .projectMobile {
     display: block;
-    margin-top: 200px;
+    margin-top: 400px;
   }
 
   .footer {

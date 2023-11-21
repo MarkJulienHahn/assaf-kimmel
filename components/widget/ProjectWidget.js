@@ -15,8 +15,6 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
     windowWidth <= 600 && setHovered(true);
   }, [windowWidth]);
 
-  console.log(widgetContent)
-
   return (
     <div
       className={styles.outerProjSmall}

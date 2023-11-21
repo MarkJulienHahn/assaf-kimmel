@@ -46,7 +46,7 @@ const Project = ({
   };
 
   const { ref, inView } = useInView({
-    threshold: 0.6,
+    threshold: 0.1,
   });
 
   const anchorRef = useRef();
@@ -146,6 +146,10 @@ const Project = ({
         >
           <div className={styles.anchor} ref={anchorRef}></div>
           <div
+            className={i != 0 ? styles.widgetAnchor : styles.firstWidgetAnchor}
+            ref={ref}
+          ></div>
+          <div
             ref={wrapperRef}
             style={{ display: "flex", alignItems: "flex-end" }}
           >
@@ -181,7 +185,7 @@ const Project = ({
             ))}
           </div>
         </div>
-        <div className={styles.index} ref={ref}>
+        <div className={styles.index}>
           0{swiperIndex + 1} 0{project.images.length}
         </div>
       </div>

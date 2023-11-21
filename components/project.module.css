@@ -43,6 +43,19 @@
   transform: translateY(calc(-8vh + var(--space-M)));
 }
 
+.widgetAnchor {
+  position: absolute;
+  height: 60vh;
+  width: 20px;
+}
+
+.firstWidgetAnchor {
+  position: absolute;
+  bottom: -100px;
+  height: 60vh;
+  width: 20px;
+}
+
 .sliderControls {
   position: absolute;
   height: 92vh;
