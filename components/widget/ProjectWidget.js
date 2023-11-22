@@ -47,7 +47,7 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
             </div>
           )}
 
-          {hovered && (
+          {hovered && widgetContent.shortDescription && (
             <div className={styles.projectText}>
               <PortableText content={widgetContent.shortDescription} />
             </div>
@@ -56,7 +56,7 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
       </div>
 
       <div className={styles.projectTextMobile} onClick={() => setIndex(5)}>
-        <PortableText content={widgetContent.shortDescription} />
+        {/* <PortableText content={widgetContent.shortDescription} /> */}
         <div className={styles.projectArrowMobile}>
           <SlArrowDown />
         </div>

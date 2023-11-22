@@ -78,6 +78,8 @@ const ProjectSwiperInnerDesktop = ({
     } else return;
   }, [sliderTrigger]);
 
+  active && console.log(getImageWidth(92), windowWidth)
+
   return (
     <>
       <div
@@ -92,6 +94,7 @@ const ProjectSwiperInnerDesktop = ({
           width: active
             ? `${getImageWidth(92)}vh`
             : `${getImageWidth(92) * 0.3}vh`,
+          maxWidth: "92vw",
           position: "relative",
           transformOrigin: "bottom left",
           background: !imgLoaded
@@ -108,7 +111,7 @@ const ProjectSwiperInnerDesktop = ({
             alt={image.alt ? image.alt : "An Image by Assaf Kimmel"}
             style={{
               objectFit: "contain",
-              objectPosition: "top",
+              objectPosition: "bottom",
             }}
             onLoad={() => setImgLoaded(true)}
             priority={swiperIndex + 3 <= i ? "true" : "false"}

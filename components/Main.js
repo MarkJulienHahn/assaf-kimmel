@@ -67,8 +67,6 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     };
   }, []); // Empty dependency array ensures this effect runs only once
 
-  console.log(pathname);
-
   return (
     <div>
       <Widget
