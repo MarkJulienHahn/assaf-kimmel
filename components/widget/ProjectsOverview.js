@@ -64,9 +64,7 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
         }
       >
         <div className={styles.left}></div>
-        <div
-          className={styles.overviewInner}
-        >
+        <div className={styles.overviewInner}>
           <Swiper spaceBetween={0} slidesPerView={"auto"}>
             {projects.map((project, i) => (
               <SwiperSlide key={i}>
@@ -96,7 +94,9 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
               </div>
               <div className={styles.overviewTextWrapper}>
                 <div className={styles.overviewText}>
-                  <PortableText content={project.shortDescription} />
+                  {project.shortDescription && (
+                    <PortableText content={project.shortDescription} />
+                  )}
                 </div>
               </div>
               <div className={styles.overviewImagesMobile}>

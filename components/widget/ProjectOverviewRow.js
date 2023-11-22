@@ -33,8 +33,8 @@ const ProjectOverviewRow = ({
   };
 
   useEffect(() => {
-    swiperSlide.isActive &&left && swiper.slidePrev();
-    swiperSlide.isActive &&right && swiper.slideNext();
+    swiperSlide.isActive && left && swiper.slidePrev();
+    swiperSlide.isActive && right && swiper.slideNext();
   }, [left, right]);
 
   return (
@@ -45,7 +45,9 @@ const ProjectOverviewRow = ({
       </div>
       <div className={styles.overviewTextWrapper}>
         <div className={styles.overviewText}>
-          <PortableText content={project.shortDescription} />
+          {project.shortDescription && (
+            <PortableText content={project.shortDescription} />
+          )}
         </div>
       </div>
       <div className={styles.overviewImagesWrapper}>
@@ -89,7 +91,6 @@ const ProjectOverviewRow = ({
           </>
         ))}
       </div>
-
     </div>
   );
 };
