@@ -13,6 +13,7 @@ const ProjectSwiperInnerDesktop = ({
   sliderTrigger,
   translation,
   length,
+  slug,
 }) => {
   const [active, setActive] = useState(true);
   const [last, setLast] = useState(false);
@@ -21,10 +22,11 @@ const ProjectSwiperInnerDesktop = ({
   const [currentWidth, setCurrentWidth] = useState(0);
   const [initial, setInitial] = useState(true);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [landscape, setLandscape] = useState(92);
 
   const ref = useRef();
 
-  const { windowWidth } = useWindowDimensions();
+  const { windowWidth, windowHeight } = useWindowDimensions();
 
   const getImageWidth = (height) => {
     return height * image.asset.metadata.dimensions.aspectRatio;
@@ -55,6 +57,40 @@ const ProjectSwiperInnerDesktop = ({
     setUrl(getUrl());
   }, []);
 
+  const landscapeAction = () => {
+    if (
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
+      0
+    ) {
+      setLandscape(92);
+    } else if (
+      image.asset.metadata.dimensions.aspectRatio -
+        windowWidth / windowHeight >=
+        0 &&
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
+        0.5
+    ) {
+      setLandscape(70);
+    } else if (
+      image.asset.metadata.dimensions.aspectRatio -
+        windowWidth / windowHeight >=
+        0.5 &&
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
+        1
+    ) {
+      setLandscape(60);
+    } else if (
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight >
+      1
+    ) {
+      setLandscape(50);
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(landscapeAction, 100);
+  }, [swiperIndex]);
+
   useEffect(() => {
     if (active && sliderTrigger == "right" && i == 0 && !initial) {
       setTranslation(currentWidth + 5),
@@ -78,23 +114,20 @@ const ProjectSwiperInnerDesktop = ({
     } else return;
   }, [sliderTrigger]);
 
-  active && console.log(getImageWidth(92), windowWidth)
-
   return (
     <>
       <div
         className={styles.imageWrapper}
         style={{
           height: active
-            ? "92vh"
+            ? `${landscape}vh`
             : `${
-                (getImageWidth(92) * 0.3) /
+                (getImageWidth(landscape) * 0.3) /
                 image.asset.metadata.dimensions.aspectRatio
               }vh`,
           width: active
-            ? `${getImageWidth(92)}vh`
-            : `${getImageWidth(92) * 0.3}vh`,
-          maxWidth: "92vw",
+            ? `${getImageWidth(landscape)}vh`
+            : `${getImageWidth(landscape) * 0.3}vh`,
           position: "relative",
           transformOrigin: "bottom left",
           background: !imgLoaded

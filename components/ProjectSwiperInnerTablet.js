@@ -21,10 +21,11 @@ const ProjectSwiperInnerTablet = ({
   const [currentWidth, setCurrentWidth] = useState(0);
   const [initial, setInitial] = useState(true);
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [landscape, setLandscape] = useState(92);
 
   const ref = useRef();
 
-  const { windowWidth } = useWindowDimensions();
+  const { windowWidth, windowHeight } = useWindowDimensions();
 
   const getImageWidth = (height) => {
     return height * image.asset.metadata.dimensions.aspectRatio;
@@ -54,6 +55,40 @@ const ProjectSwiperInnerTablet = ({
     i == swiperIndex && windowWidth < 1400 ? setActive(true) : setActive(false);
     setUrl(getUrl());
   }, []);
+
+  const landscapeAction = () => {
+    if (
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
+      0
+    ) {
+      setLandscape(92);
+    } else if (
+      image.asset.metadata.dimensions.aspectRatio -
+        windowWidth / windowHeight >=
+        0 &&
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
+        0.5
+    ) {
+      setLandscape(70);
+    } else if (
+      image.asset.metadata.dimensions.aspectRatio -
+        windowWidth / windowHeight >=
+        0.5 &&
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
+        1
+    ) {
+      setLandscape(60);
+    } else if (
+      image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight >
+      1
+    ) {
+      setLandscape(50);
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(landscapeAction, 100);
+  }, [swiperIndex]);
 
   useEffect(() => {
     if (active && sliderTrigger == "right" && i == 0 && !initial) {
@@ -85,14 +120,14 @@ const ProjectSwiperInnerTablet = ({
         className={styles.imageWrapper}
         style={{
           height: active
-            ? "60vh"
+            ? `${landscape}vh`
             : `${
-                (getImageWidth(60) * 0.3) /
+                (getImageWidth(landscape) * 0.3) /
                 image.asset.metadata.dimensions.aspectRatio
               }vh`,
           width: active
-            ? `${getImageWidth(60)}vh`
-            : `${getImageWidth(60) * 0.3}vh`,
+            ? `${getImageWidth(landscape)}vh`
+            : `${getImageWidth(landscape) * 0.3}vh`,
           position: "relative",
           transformOrigin: "bottom left",
           background: !imgLoaded

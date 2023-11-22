@@ -166,6 +166,7 @@ const Project = ({
                     sliderTrigger={sliderTrigger}
                     length={project.images.length}
                     i={i}
+                    slug={project.slug.current}
                   />
                 </div>
                 <div className={styles.tablet}>
