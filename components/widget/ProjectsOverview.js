@@ -15,7 +15,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
+const ProjectsOverview = ({ projects, setIndex, setScrollTrigger, setLockScroll }) => {
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(false);
   const { windowWidth } = useWindowDimensions();
@@ -76,6 +76,7 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger }) => {
                   i={i}
                   left={left}
                   right={right}
+                  setLockScroll={setLockScroll}
                 />
               </SwiperSlide>
             ))}

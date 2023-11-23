@@ -30,10 +30,11 @@ const Widget = ({
   widgetContent,
   setScrollTrigger,
   slug,
+  setLockScroll,
 }) => {
   const [widgetDimensions, setWidgetDimensions] = useState({
-    width: 0,
-    height: null,
+    width: 174,
+    height: 43,
   });
 
   const { windowWidth } = useWindowDimensions();
@@ -42,6 +43,7 @@ const Widget = ({
   const [isClosed, setIsClosed] = useState(false);
   const [extended, setExtended] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const array = [
     <Menu key={1} setIndex={setIndex} />,
@@ -77,6 +79,7 @@ const Widget = ({
       index={index}
       projects={projects}
       setScrollTrigger={setScrollTrigger}
+      setLockScroll={setLockScroll}
     />,
     <About key={8} setIndex={setIndex} index={index} about={about} />,
     <Contact key={9} setIndex={setIndex} index={index} contact={contact} />,
@@ -85,6 +88,16 @@ const Widget = ({
 
   const indexFct = (indx) => {
     setIndex(indx);
+  };
+
+  const mouseEnterFct = () => {
+    if (!isTouchDevice) {
+      setLockScroll(true), setHovered(true);
+    }
+  };
+
+  const mouseLeaveFct = () => {
+    setLockScroll(false), setHovered(false);
   };
 
   const widgetTransformation = () => {
@@ -108,14 +121,32 @@ const Widget = ({
     slug == "imprint" && setTimeout(() => indexFct(9), 1000);
   }, []);
 
+  useEffect(() => {
+    !extended && setLockScroll(false);
+  }, [extended]);
+
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+      setIsTouchDevice(touchSupport);
+    };
+
+    checkTouchDevice();
+
+    // Cleanup
+    return () => {
+      // Cleanup code if needed
+    };
+  }, []);
+
+
+
   return (
     <div
       className={`${styles.wrapper} ${index == 3 ? styles.wrapperNews : ""}`}
       style={{ width: widgetDimensions.width, height: widgetDimensions.height }}
-      onMouseEnter={!extended ? () => setHovered(true) : () => {}}
-      onMouseLeave={
-        !extended && windowWidth > 1400 ? () => setHovered(false) : () => {}
-      }
+      onMouseEnter={!extended ? mouseEnterFct : () => {}}
+      onMouseLeave={!extended && windowWidth > 1400 ? mouseLeaveFct : () => {}}
     >
       {index != 1 && index != 2 && (
         <div

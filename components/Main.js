@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { useInView } from "react-intersection-observer";
 import { usePathname } from "next/navigation";
@@ -14,7 +14,9 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
   const [delay, setDelay] = useState(true);
   const [widgetContent, setWidgetContent] = useState(projects[0]);
   const [scrollTrigger, setScrollTrigger] = useState("");
-  const [scrollY, setScrollY] = useState(null);
+  const [windowY, setWindowY] = useState(null);
+  const [lockScroll, setLockScroll] = useState(false);
+  const [newY, setNewY] = useState(null);
 
   const pathname = usePathname();
 
@@ -22,9 +24,9 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     threshold: 0,
   });
 
-  useEffect(() => {
-    scrollY == 0 && history.replaceState(null, "", `/`);
-  }, [scrollY]);
+  // useEffect(() => {
+  //   windowY == 0 && history.replaceState(null, "", `/`);
+  // }, [windowY]);
 
   const delayFct = () => {
     setDelay(false);
@@ -42,9 +44,9 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     !delay && inView && setIndex(3);
   }, [inView]);
 
-  useEffect(() => {
-    setTimeout(resetScrollTrigger, 500);
-  }, [scrollTrigger]);
+  // useEffect(() => {
+  //   setTimeout(resetScrollTrigger, 500);
+  // }, [scrollTrigger]);
 
   useEffect(() => {
     slug && setScrollTrigger(slug);
@@ -55,7 +57,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
   useEffect(() => {
     const handleScroll = () => {
       // Update scrollY state with the current vertical scroll position
-      setScrollY(window.scrollY);
+      setWindowY(window.scrollY);
     };
 
     // Add event listener for scroll events
@@ -65,10 +67,47 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); // Empty dependency array ensures this effect runs only once
+  }, []);
+
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+
+    const scrollY = Math.max(window.scrollY || 0, window.pageYOffset || 0);
+
+    if (lockScroll) {
+      if (scrollContainer) {
+        scrollContainer.style.position = "fixed";
+        scrollContainer.style.top = `-${scrollY}px`;
+
+        setNewY(scrollContainer.style.top);
+      }
+    } else {
+      const scrollContainer = scrollContainerRef.current;
+
+      if (scrollContainer) {
+        scrollContainer.style.position = "";
+        scrollContainer.style.width = "";
+        scrollContainer.style.top = "";
+        scrollContainer.style.left = "";
+
+        window.scrollTo(0, -parseInt(newY));
+      }
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.style.position = "";
+        scrollContainer.style.width = "";
+        scrollContainer.style.top = "";
+        scrollContainer.style.left = "";
+      }
+    };
+  }, [lockScroll]);
 
   return (
-    <div>
+    <div ref={scrollContainerRef}>
       <Widget
         index={index}
         setIndex={setIndex}
@@ -80,6 +119,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
         imprint={imprint}
         setScrollTrigger={setScrollTrigger}
         slug={slug}
+        setLockScroll={setLockScroll}
       />
       <div
         ref={ref}
@@ -90,7 +130,6 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
           top: "0",
         }}
       ></div>
-
       <div className="projectDesktop">
         {projects.map((project, i) => (
           <Project
@@ -119,7 +158,6 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
           />
         ))}
       </div>
-
       <p className="footer">© Assaf Kimmel, {new Date().getFullYear()} </p>
     </div>
   );

@@ -17,11 +17,15 @@
   background: var(--widget-color);
   transition: all 0.3s cubic-bezier(0.96, 0.09, 0.52, 0.98);
   max-height: calc(100vh - 2 * var(--space-S));
-  overflow-y: scroll;
+  overflow: scroll;
   overscroll-behavior: none;
   z-index: 100;
   border: 0.1px solid rgb(213, 213, 213);
   scrollbar-width: none;
+  animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 .outer {
@@ -42,6 +46,13 @@
   animation-fill-mode: forwards;
   opacity: 0;
   max-width: calc(100vw - 2 * var(--space-S));
+}
+
+.intro {
+  animation: fadeIn 0.5s ease;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 .information {
@@ -127,7 +138,7 @@
 .newsFeed {
   overscroll-behavior: contain;
   overflow-y: scroll;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 }
 
 .newsContent {
@@ -293,7 +304,7 @@
   overflow-x: hidden;
   overscroll-behavior: none;
   max-height: calc(100vh - 4 * var(--space-S));
-  scrollbar-width: 0;
+  /* scrollbar-width: 0; */
   width: 300px;
   padding-right: var(--space-S);
 }
@@ -349,7 +360,7 @@
 .aboutContent {
   width: 400px;
   overflow: scroll;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
   max-height: calc(100vh - 50px);
 }
 
@@ -415,7 +426,7 @@
 .overviewInner {
   display: flex;
   overflow: hidden;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
   height: calc(100vh - 4 * var(--space-S));
   width: calc(100% - 80px);
 }
@@ -424,7 +435,7 @@
   width: 300px;
   min-width: 300px;
   overflow: scroll;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
   overscroll-behavior: contain;
   height: 100%;
   animation: fadeIn 0.2s ease-in;
@@ -501,7 +512,7 @@
   opacity: 0;
   max-height: calc(100vh - 4 * var(--space-S));
   overflow: scroll;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
 }
 
 .imprintContent p {

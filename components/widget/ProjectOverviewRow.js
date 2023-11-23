@@ -18,18 +18,26 @@ const ProjectOverviewRow = ({
   i,
   setIndex,
   setScrollTrigger,
+  setLockScroll,
   left,
   right,
 }) => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
+
+  const scrollTriggerCallback = () => {
+    setScrollTrigger(project.slug.current.toString());
+  };
+
   const triggerCleanup = () => {
-    setScrollTrigger(0);
+    setScrollTrigger(null);
   };
 
   const scrollTriggerFct = () => {
-    setScrollTrigger(project.slug.current), setIndex(4);
-    setTimeout(triggerCleanup, 500);
+    setLockScroll(false);
+    setIndex(4)
+    setTimeout(scrollTriggerCallback, 1000);
+    setTimeout(triggerCleanup, 2000);
   };
 
   useEffect(() => {

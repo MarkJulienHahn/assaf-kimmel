@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import styles from "./widget.module.css";
 
 const Intro1 = ({ setIndex, index }) => {
   const nextFct = () => {

@@ -94,7 +94,11 @@ const Project = ({
 
   useEffect(() => {
     scrollTrigger == project.slug.current &&
-      anchorRef.current.scrollIntoView({ block: "start", behavior: "smooth" });
+      anchorRef.current.scrollIntoView({
+        block: "start",
+        behavior: "smooth",
+      }) &&
+      setIndex(4);
   }, [scrollTrigger]);
 
   useEffect(() => {
