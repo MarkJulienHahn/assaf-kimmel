@@ -77,7 +77,7 @@ const Project = ({
   };
 
   const handleResize = () => {
-    // !isTouchDevice && window.location.reload();
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -108,17 +108,16 @@ const Project = ({
   }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    !isTouchDevice && window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      !isTouchDevice && window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
     <>
       <div className={styles.sliderOuter}>
-
         <div
           className={styles.sliderControls}
           onTouchStart={handleTouchStart}
