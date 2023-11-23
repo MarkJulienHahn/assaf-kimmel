@@ -77,7 +77,7 @@ const Project = ({
   };
 
   const handleResize = () => {
-    window.location.reload();
+    !isTouchDevice && window.location.reload();
   };
 
   useEffect(() => {
@@ -108,12 +108,12 @@ const Project = ({
   }, []);
 
   useEffect(() => {
-    !isTouchDevice && window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      !isTouchDevice && window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isTouchDevice]);
 
   return (
     <>
