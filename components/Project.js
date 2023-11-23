@@ -118,6 +118,7 @@ const Project = ({
   return (
     <>
       <div className={styles.sliderOuter}>
+        {isTouchDevice ? "TOUCH" : "NOTOUCH"}
         <div
           className={styles.sliderControls}
           onTouchStart={handleTouchStart}

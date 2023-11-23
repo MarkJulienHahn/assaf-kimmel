@@ -109,17 +109,25 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
 
   useEffect(() => {
     const checkTouchDevice = () => {
-      const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-      setIsTouchDevice(touchSupport);
+      setIsTouchDevice(
+        "ontouchstart" in window ||
+          navigator.maxTouchPoints > 0 ||
+          navigator.msMaxTouchPoints > 0
+      );
     };
 
-    checkTouchDevice();
+    checkTouchDevice(); // Initial check
 
-    // Cleanup
+    // Event listener for changes in touch capability (if needed)
+    window.addEventListener("touchstart", checkTouchDevice);
+
     return () => {
-      // Cleanup code if needed
+      // Cleanup: remove the event listener on component unmount
+      window.removeEventListener("touchstart", checkTouchDevice);
     };
   }, []);
+
+  console.log(isTouchDevice);
 
   return (
     <div ref={scrollContainerRef}>
