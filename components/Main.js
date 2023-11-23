@@ -17,6 +17,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
   const [windowY, setWindowY] = useState(null);
   const [lockScroll, setLockScroll] = useState(false);
   const [newY, setNewY] = useState(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const pathname = usePathname();
 
@@ -106,6 +107,20 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     };
   }, [lockScroll]);
 
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+      setIsTouchDevice(touchSupport);
+    };
+
+    checkTouchDevice();
+
+    // Cleanup
+    return () => {
+      // Cleanup code if needed
+    };
+  }, []);
+
   return (
     <div ref={scrollContainerRef}>
       <Widget
@@ -120,6 +135,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
         setScrollTrigger={setScrollTrigger}
         slug={slug}
         setLockScroll={setLockScroll}
+        isTouchDevice={isTouchDevice}
       />
       <div
         ref={ref}
@@ -141,6 +157,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
             setWidgetContent={setWidgetContent}
             scrollTrigger={scrollTrigger}
             delay={delay}
+            isTouchDevice={isTouchDevice}
           />
         ))}
       </div>

@@ -31,6 +31,7 @@ const Widget = ({
   setScrollTrigger,
   slug,
   setLockScroll,
+  isTouchDevice
 }) => {
   const [widgetDimensions, setWidgetDimensions] = useState({
     width: 174,
@@ -43,7 +44,7 @@ const Widget = ({
   const [isClosed, setIsClosed] = useState(false);
   const [extended, setExtended] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
 
   const array = [
     <Menu key={1} setIndex={setIndex} />,
@@ -125,19 +126,7 @@ const Widget = ({
     !extended && setLockScroll(false);
   }, [extended]);
 
-  useEffect(() => {
-    const checkTouchDevice = () => {
-      const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-      setIsTouchDevice(touchSupport);
-    };
 
-    checkTouchDevice();
-
-    // Cleanup
-    return () => {
-      // Cleanup code if needed
-    };
-  }, []);
 
 
 

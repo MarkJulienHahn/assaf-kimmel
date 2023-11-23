@@ -14,6 +14,7 @@ const Project = ({
   setWidgetContent,
   scrollTrigger,
   i,
+  isTouchDevice,
   delay,
 }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
@@ -76,7 +77,7 @@ const Project = ({
   };
 
   const handleResize = () => {
-    window.location.reload();
+    !isTouchDevice && window.location.reload();
   };
 
   useEffect(() => {
