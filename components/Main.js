@@ -131,6 +131,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
 
   return (
     <div ref={scrollContainerRef}>
+      {isTouchDevice ? "TOUCH" : "NOTOUCH"}
       <Widget
         index={index}
         setIndex={setIndex}
