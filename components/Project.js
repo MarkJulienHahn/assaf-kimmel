@@ -77,7 +77,7 @@ const Project = ({
   };
 
   const handleResize = () => {
-    !isTouchDevice && window.location.reload();
+    // !isTouchDevice && window.location.reload();
   };
 
   useEffect(() => {
