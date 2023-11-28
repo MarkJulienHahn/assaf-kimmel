@@ -86,6 +86,7 @@ const Project = ({
 
   useEffect(() => {
     translation && setSliderDelay(true), setTimeout(handleSliderDelay, 701);
+    !delay && changeWidget();
   }, [translation]);
 
   useEffect(() => {
@@ -141,6 +142,11 @@ const Project = ({
             }
           ></div>
         </div>
+
+        <div
+          className={i != 0 ? styles.widgetAnchor : styles.firstWidgetAnchor}
+          ref={ref}
+        ></div>
         <div
           className={styles.sliderWrapper}
           style={{
@@ -150,13 +156,10 @@ const Project = ({
           }}
         >
           <div className={styles.anchor} ref={anchorRef}></div>
-          <div
-            className={i != 0 ? styles.widgetAnchor : styles.firstWidgetAnchor}
-            ref={ref}
-          ></div>
+
           <div
             ref={wrapperRef}
-            style={{ display: "flex", alignItems: "flex-end"}}
+            style={{ display: "flex", alignItems: "flex-end" }}
           >
             {project.images.map((image, i) => (
               <>
