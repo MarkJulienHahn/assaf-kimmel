@@ -123,7 +123,6 @@ h3 {
   transform: translate(0px, 7px);
 }
 
-
 .footer {
   margin-top: 50px;
   padding: var(--space-S);
@@ -139,7 +138,7 @@ h3 {
 }
 
 .desktop {
-  margin-top: 400px
+  margin-top: 400px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -164,7 +163,7 @@ h3 {
   }
 
   .projectWrapper {
-    margin-top: 400px;
+    margin-top: 100px;
   }
 
   .footer {

@@ -43,6 +43,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
 
   useEffect(() => {
     !delay && inView && setIndex(3);
+    !inView && setIndex(4);
   }, [inView]);
 
   // useEffect(() => {
@@ -146,10 +147,11 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
       <div
         ref={ref}
         style={{
-          height: "300px",
+          height: "100px",
+          width: "20px",
           position: "absolute",
-          background: "red",
           top: "0",
+          left: "0",
         }}
       ></div>
 

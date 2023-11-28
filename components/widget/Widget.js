@@ -126,10 +126,6 @@ const Widget = ({
     !extended && setLockScroll(false);
   }, [extended]);
 
-
-
-
-
   return (
     <div
       className={`${styles.wrapper} ${index == 3 ? styles.wrapperNews : ""}`}

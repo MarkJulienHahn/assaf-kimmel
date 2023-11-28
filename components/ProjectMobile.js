@@ -4,6 +4,7 @@ import styles from "../components/project.module.css";
 import ProjectMobileSwiper from "../components/ProjectMobileSwiper";
 
 import { useInView } from "react-intersection-observer";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -17,15 +18,13 @@ const Project = ({
   delay,
 }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
-  const [width, setWidth] = useState(null);
-  const [translation, setTranslation] = useState(0);
-  const [sliderTrigger, setSliderTrigger] = useState(null);
-  const [next, setNext] = useState(false);
-  const [prev, setPrev] = useState(false);
+  const [aspectRatio, setAspectRatio] = useState(null);
 
-  const { ref, inView, entry } = useInView({
-    threshold: 1,
+  const { ref, inView } = useInView({
+    threshold: 0.5,
   });
+
+  const { windowWidth, windowHeight } = useWindowDimensions();
 
   const anchorRef = useRef();
   const wrapperRef = useRef();
@@ -60,11 +59,23 @@ const Project = ({
     Object.assign(project, { i: i });
   }, []);
 
+  useEffect(() => {
+    setAspectRatio(windowWidth / windowHeight);
+  }, [windowWidth]);
+
+  console.log(inView)
+
   return (
     <>
-      <div className={styles.sliderOuter} style={{ paddingTop: "40vh" }}>
-        <div className={styles.sliderWrapper}>
-          <div className={styles.anchor} ref={anchorRef}></div>
+      <div
+        // className={styles.sliderOuter}
+        style={{
+          marginTop: aspectRatio > 1 ? "200px" : "0px",
+        }}
+        ref={ref}
+      >
+        <div className={styles.sliderWrapper} ref={anchorRef}>
+          {/* <div className={styles.anchor}></div> */}
           <Swiper spaceBetween={5} slidesPerView={"auto"}>
             {project.images.map((image, i) => (
               <SwiperSlide key={i}>
@@ -72,12 +83,14 @@ const Project = ({
                   image={image}
                   i={i}
                   setSwiperIndex={setSwiperIndex}
+                  aspectRatio={aspectRatio}
+                  windowWidth={windowWidth}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-        <div className={styles.index} ref={ref}>
+        <div className={styles.index}>
           0{swiperIndex + 1} 0{project.images.length}
         </div>
       </div>

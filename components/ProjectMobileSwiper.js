@@ -2,20 +2,21 @@ import { useState, useEffect } from "react";
 import { useSwiper, useSwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { urlFor } from "../hooks/useImageUrlBuilder";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 
-const ProjectMobileSwiper = ({ image, i, setSwiperIndex }) => {
+
+const ProjectMobileSwiper = ({ image, i, setSwiperIndex, aspectRatio, windowWidth }) => {
   const [url, setUrl] = useState(null);
+
 
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
 
-  const { windowWidth, windowHeight } = useWindowDimensions();
 
   const getUrl = () => {
     return urlFor(image.asset.url)
-      .width(Math.floor(windowWidth * 0.9))
+      .width(Math.floor(windowWidth * 1.5))
       .quality(50)
+      .format("jpg")
       .url();
   };
 
@@ -31,7 +32,7 @@ const ProjectMobileSwiper = ({ image, i, setSwiperIndex }) => {
     <div
       style={{
         width: "100vw",
-        height: "calc(100vh - 2 * var(--space-M))",
+        height: aspectRatio > 1 ? "calc(100vh - 2 * var(--space-M))" : "60vh",
         display: "flex",
       }}
     >
@@ -60,8 +61,8 @@ const ProjectMobileSwiper = ({ image, i, setSwiperIndex }) => {
           fill
           src={url}
           alt={image.alt}
-          placeholder={"blur"}
-          blurDataURL={image.asset.metadata.lqip}
+          // placeholder={"blur"}
+          // blurDataURL={image.asset.metadata.lqip}
           style={{
             objectFit: "contain",
             objectPosition: "bottom left",
