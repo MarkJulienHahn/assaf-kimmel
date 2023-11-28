@@ -3,14 +3,18 @@ import { useSwiper, useSwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { urlFor } from "../hooks/useImageUrlBuilder";
 
-
-const ProjectMobileSwiper = ({ image, i, setSwiperIndex, aspectRatio, windowWidth }) => {
+const ProjectMobileSwiper = ({
+  image,
+  i,
+  setSwiperIndex,
+  aspectRatio,
+  windowWidth,
+}) => {
   const [url, setUrl] = useState(null);
-
+  const [loaded, setLoaded] = useState(null);
 
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
-
 
   const getUrl = () => {
     return urlFor(image.asset.url)
@@ -56,6 +60,22 @@ const ProjectMobileSwiper = ({ image, i, setSwiperIndex, aspectRatio, windowWidt
         onClick={() => swiper.slideNext()}
       ></div>
 
+      <div
+        style={{
+          position: "absolute",
+          left: "var(--space-S)",
+          bottom: 0,
+          width: "calc(100vw - 2*var(--space-S))",
+          height: `calc(${
+            100 / image.asset.metadata.dimensions.aspectRatio
+          }vw - 2*var(--space-S))`,
+          background: !loaded
+            ? image.asset.metadata.palette.vibrant.background
+            : "transparent",
+          zIndex: "10",
+        }}
+      ></div>
+
       {url && (
         <Image
           fill
@@ -67,7 +87,9 @@ const ProjectMobileSwiper = ({ image, i, setSwiperIndex, aspectRatio, windowWidt
             objectFit: "contain",
             objectPosition: "bottom left",
             padding: "0 var(--space-S)",
+            zIndex: "20",
           }}
+          onLoad={() => setLoaded(true)}
         />
       )}
     </div>
