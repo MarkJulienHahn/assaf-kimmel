@@ -350,6 +350,10 @@
   width: 300px;
 }
 
+.descriptionMobile {
+  display: none;
+}
+
 /* ABOUT */
 
 .aboutName {
@@ -687,5 +691,22 @@
   .contactWrapper a:hover,
   .outerProjSmall:hover {
     color: inherit;
+  }
+  .descriptionMobile {
+    display: block;
+    padding-right: var(--space-S);
+    padding-top: var(--space-S);
+    font-family: "ProtestMono";
+    font-size: var(--PGM-font-size);
+    line-height: var(--PGM-line-height);
+    letter-spacing: var(--PGM-letter-spacing);
+    font-variation-settings: "wght" 70;
+    animation: fadeIn 0.2s ease-in;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+  .projectTextTwoLine {
+    display: none;
   }
 }

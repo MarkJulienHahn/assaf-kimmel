@@ -55,6 +55,12 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
         </div>
       </div>
 
+      {widgetContent.twoLineDescription && (
+        <div className={styles.descriptionMobile}>
+            <PortableText content={widgetContent.twoLineDescription} />
+        </div>
+      )}
+
       <div className={styles.projectTextMobile} onClick={() => setIndex(5)}>
         {/* <PortableText content={widgetContent.shortDescription} /> */}
         <div className={styles.projectArrowMobile}>
