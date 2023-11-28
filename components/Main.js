@@ -127,7 +127,6 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     };
   }, []);
 
-
   return (
     <div ref={scrollContainerRef}>
       <Widget
@@ -153,35 +152,40 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
           top: "0",
         }}
       ></div>
-      <div className="projectDesktop">
-        {projects.map((project, i) => (
-          <Project
-            key={i}
-            i={i}
-            project={project}
-            index={index}
-            setIndex={setIndex}
-            setWidgetContent={setWidgetContent}
-            scrollTrigger={scrollTrigger}
-            delay={delay}
-            isTouchDevice={isTouchDevice}
-          />
-        ))}
-      </div>
-      <div className="projectMobile">
-        {projects.map((project, i) => (
-          <ProjectMobile
-            key={i}
-            i={i}
-            project={project}
-            index={index}
-            setIndex={setIndex}
-            setWidgetContent={setWidgetContent}
-            scrollTrigger={scrollTrigger}
-            delay={delay}
-          />
-        ))}
-      </div>
+
+      {!isTouchDevice ? (
+        <div className="projectWrapper">
+          {projects.map((project, i) => (
+            <Project
+              key={i}
+              i={i}
+              project={project}
+              index={index}
+              setIndex={setIndex}
+              setWidgetContent={setWidgetContent}
+              scrollTrigger={scrollTrigger}
+              delay={delay}
+              isTouchDevice={isTouchDevice}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="projectWrapper">
+          {projects.map((project, i) => (
+            <ProjectMobile
+              key={i}
+              i={i}
+              project={project}
+              index={index}
+              setIndex={setIndex}
+              setWidgetContent={setWidgetContent}
+              scrollTrigger={scrollTrigger}
+              delay={delay}
+            />
+          ))}
+        </div>
+      )}
+
       <p className="footer">© Assaf Kimmel, {new Date().getFullYear()} </p>
     </div>
   );

@@ -123,9 +123,6 @@ h3 {
   transform: translate(0px, 7px);
 }
 
-.projectMobile {
-  display: none;
-}
 
 .footer {
   margin-top: 50px;
@@ -137,8 +134,12 @@ h3 {
   font-variation-settings: "wght" 70;
 }
 
-.projectDesktop {
+.projectWrapper {
   padding-top: 200px;
+}
+
+.desktop {
+  margin-top: 400px
 }
 
 @media screen and (max-width: 1000px) {
@@ -162,8 +163,7 @@ h3 {
     display: none;
   }
 
-  .projectMobile {
-    display: block;
+  .projectWrapper {
     margin-top: 400px;
   }
 

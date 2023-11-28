@@ -709,4 +709,10 @@
   .projectTextTwoLine {
     display: none;
   }
+  .projectIndex {
+  }
+  .projectTitle {
+    white-space: unset;
+    width: calc(100vw - 150px);
+  }
 }

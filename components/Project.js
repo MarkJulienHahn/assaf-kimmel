@@ -156,7 +156,7 @@ const Project = ({
           ></div>
           <div
             ref={wrapperRef}
-            style={{ display: "flex", alignItems: "flex-end" }}
+            style={{ display: "flex", alignItems: "flex-end"}}
           >
             {project.images.map((image, i) => (
               <>

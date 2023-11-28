@@ -62,7 +62,7 @@ const Project = ({
 
   return (
     <>
-      <div className={styles.sliderOuter}>
+      <div className={styles.sliderOuter} style={{ paddingTop: "40vh" }}>
         <div className={styles.sliderWrapper}>
           <div className={styles.anchor} ref={anchorRef}></div>
           <Swiper spaceBetween={5} slidesPerView={"auto"}>
