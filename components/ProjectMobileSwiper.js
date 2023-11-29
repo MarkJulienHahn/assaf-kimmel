@@ -70,7 +70,8 @@ const ProjectMobileSwiper = ({
             100 / image.asset.metadata.dimensions.aspectRatio
           }vw - 2*var(--space-S))`,
           background: !loaded
-            ? image.asset.metadata.palette.vibrant.background
+            ? image.asset.metadata.palette.dominant.background
+            // ? "blue"
             : "transparent",
           zIndex: "10",
         }}
@@ -89,6 +90,7 @@ const ProjectMobileSwiper = ({
             padding: "0 var(--space-S)",
             zIndex: "20",
           }}
+          priority={i < 3 ? true : false}
           onLoad={() => setLoaded(true)}
         />
       )}

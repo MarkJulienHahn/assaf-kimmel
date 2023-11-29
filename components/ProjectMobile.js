@@ -63,8 +63,6 @@ const Project = ({
     setAspectRatio(windowWidth / windowHeight);
   }, [windowWidth]);
 
-  console.log(inView)
-
   return (
     <>
       <div
