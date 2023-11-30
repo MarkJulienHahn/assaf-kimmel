@@ -47,7 +47,7 @@ const Project = ({
   };
 
   const { ref, inView } = useInView({
-    threshold: 0.1,
+    threshold: 0.4,
   });
 
   const anchorRef = useRef();
@@ -143,10 +143,7 @@ const Project = ({
           ></div>
         </div>
 
-        <div
-          className={i != 0 ? styles.widgetAnchor : styles.firstWidgetAnchor}
-          ref={ref}
-        ></div>
+        <div className={styles.widgetAnchor} ref={ref}></div>
         <div
           className={styles.sliderWrapper}
           style={{
