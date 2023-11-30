@@ -19,7 +19,7 @@ const ProjectMobileSwiper = ({
 
   const getUrl = () => {
     return urlFor(image.asset.url)
-      .width(Math.floor(windowWidth * 1.5))
+      .width(Math.floor(windowWidth * 15))
       .quality(50)
       .format("jpg")
       .url();
@@ -30,7 +30,7 @@ const ProjectMobileSwiper = ({
   }, [swiperSlide.isActive]);
 
   useEffect(() => {
-    i - 1 <= 0 && setUrl(getUrl());
+    i - 3 <= 0 && setUrl(getUrl());
   }, [nextImageIndex]);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const ProjectMobileSwiper = ({
             100 / image.asset.metadata.dimensions.aspectRatio
           }vw - 2*var(--space-S))`,
           background: !loaded
-            ? "lightgrey"
+            ? "white"
             : // ? "blue"
               "transparent",
           zIndex: "10",
