@@ -19,7 +19,7 @@ const ProjectMobileSwiper = ({
 
   const getUrl = () => {
     return urlFor(image.asset.url)
-      .width(Math.floor(windowWidth * 15))
+      .width(Math.floor(windowWidth * 1.5))
       .quality(50)
       .format("jpg")
       .url();
@@ -36,8 +36,6 @@ const ProjectMobileSwiper = ({
   useEffect(() => {
     setUrl(getUrl());
   }, []);
-
-  console.log(i, nextImageIndex);
 
   return (
     <div
