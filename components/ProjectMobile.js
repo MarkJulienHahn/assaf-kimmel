@@ -18,6 +18,7 @@ const Project = ({
   delay,
 }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
+  const [nextImageIndex, setNextImageIndex] = useState(0);
   const [aspectRatio, setAspectRatio] = useState(null);
 
   const { ref, inView } = useInView({
@@ -27,7 +28,6 @@ const Project = ({
   const { windowWidth, windowHeight } = useWindowDimensions();
 
   const anchorRef = useRef();
-  const wrapperRef = useRef();
 
   const changeWidget = () => {
     setIndex(4), setWidgetContent(project);
@@ -38,17 +38,9 @@ const Project = ({
     !delay && inView && changeWidget();
   }, [inView]);
 
-  const nextFunction = () => {
-    setNext(true), setTimeout(() => setNext(false), 10);
+  const handleSlideChange = () => {
+    setNextImageIndex(swiperIndex + 1);
   };
-  const prevFunction = () => {
-    setPrev(true), setTimeout(() => setPrev(false), 10);
-  };
-
-  // useEffect(() => {
-  //   !delay && anchorRef.current.scrollIntoView({ behavior: "smooth" }),
-  //     !delay && setIndex(4);
-  // }, [swiperIndex]);
 
   useEffect(() => {
     scrollTrigger == project.slug.current &&
@@ -74,7 +66,11 @@ const Project = ({
       >
         <div className={styles.sliderWrapper} ref={anchorRef}>
           {/* <div className={styles.anchor}></div> */}
-          <Swiper spaceBetween={5} slidesPerView={"auto"}>
+          <Swiper
+            spaceBetween={5}
+            slidesPerView={"auto"}
+            onSlideChange={handleSlideChange}
+          >
             {project.images.map((image, i) => (
               <SwiperSlide key={i}>
                 <ProjectMobileSwiper
@@ -83,6 +79,7 @@ const Project = ({
                   setSwiperIndex={setSwiperIndex}
                   aspectRatio={aspectRatio}
                   windowWidth={windowWidth}
+                  nextImageIndex={nextImageIndex}
                 />
               </SwiperSlide>
             ))}

@@ -9,6 +9,7 @@ const ProjectMobileSwiper = ({
   setSwiperIndex,
   aspectRatio,
   windowWidth,
+  nextImageIndex,
 }) => {
   const [url, setUrl] = useState(null);
   const [loaded, setLoaded] = useState(null);
@@ -29,8 +30,14 @@ const ProjectMobileSwiper = ({
   }, [swiperSlide.isActive]);
 
   useEffect(() => {
+    i - 1 <= 0 && setUrl(getUrl());
+  }, [nextImageIndex]);
+
+  useEffect(() => {
     setUrl(getUrl());
   }, []);
+
+  console.log(i, nextImageIndex);
 
   return (
     <div
@@ -70,9 +77,9 @@ const ProjectMobileSwiper = ({
             100 / image.asset.metadata.dimensions.aspectRatio
           }vw - 2*var(--space-S))`,
           background: !loaded
-            ? image.asset.metadata.palette.dominant.background
-            // ? "blue"
-            : "transparent",
+            ? "lightgrey"
+            : // ? "blue"
+              "transparent",
           zIndex: "10",
         }}
       ></div>
@@ -90,7 +97,7 @@ const ProjectMobileSwiper = ({
             padding: "0 var(--space-S)",
             zIndex: "20",
           }}
-          priority={i < 3 ? true : false}
+          // priority={i < 3 ? true : false}
           onLoad={() => setLoaded(true)}
         />
       )}
