@@ -95,7 +95,7 @@ const ProjectMobileSwiper = ({
             padding: "0 var(--space-S)",
             zIndex: "20",
           }}
-          // priority={i < 3 ? true : false}
+          priority={true}
           onLoad={() => setLoaded(true)}
         />
       )}
