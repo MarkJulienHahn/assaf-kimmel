@@ -180,11 +180,12 @@
 
 .innerBottom {
   display: flex;
-  margin-top: var(--space-L);
+  margin-bottom: var(--space-L);
   animation: fadeIn 0.2s ease-in;
   animation-delay: 0.2s;
   animation-fill-mode: forwards;
   opacity: 0;
+  /* flex-direction: column; */
 }
 
 .swiperControls {
@@ -525,6 +526,7 @@
   line-height: var(--PGM-line-height);
   letter-spacing: var(--PGM-letter-spacing);
   font-variation-settings: "wght" 70;
+  padding-bottom: 15px;
 }
 
 .imprintContent h1,

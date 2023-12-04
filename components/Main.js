@@ -46,9 +46,9 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
     !inView && setIndex(4);
   }, [inView]);
 
-  // useEffect(() => {
-  //   setTimeout(resetScrollTrigger, 500);
-  // }, [scrollTrigger]);
+  useEffect(() => {
+    setTimeout(resetScrollTrigger, 500);
+  }, [scrollTrigger]);
 
   useEffect(() => {
     slug && setScrollTrigger(slug);

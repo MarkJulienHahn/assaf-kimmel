@@ -85,7 +85,7 @@ const Project = ({
   }, [inView]);
 
   useEffect(() => {
-    translation && setSliderDelay(true), setTimeout(handleSliderDelay, 701);
+    translation && setSliderDelay(true), setTimeout(handleSliderDelay, 1001);
     !delay && changeWidget();
   }, [translation]);
 

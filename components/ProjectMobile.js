@@ -22,7 +22,7 @@ const Project = ({
   const [aspectRatio, setAspectRatio] = useState(null);
 
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 0.8,
   });
 
   const { windowWidth, windowHeight } = useWindowDimensions();

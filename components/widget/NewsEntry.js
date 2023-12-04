@@ -7,7 +7,7 @@ import PortableText from "react-portable-text";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-const NewsEntry = ({ i, entry, setScrollTrigger }) => {
+const NewsEntry = ({ i, entry, setScrollTrigger, setLockScroll }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [next, setNext] = useState(false);
   const [prev, setPrev] = useState(false);
@@ -20,6 +20,21 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
 
   const showProject = (slug) => {
     setScrollTrigger(slug);
+  };
+
+  const scrollTriggerCallback = () => {
+    setScrollTrigger(entry.project.slug.current.toString());
+  };
+
+  const triggerCleanup = () => {
+    setScrollTrigger(null);
+  };
+
+  const scrollTriggerFct = () => {
+    setLockScroll(false);
+    // setIndex(4);
+    setTimeout(scrollTriggerCallback, 200);
+    setTimeout(triggerCleanup, 2000);
   };
 
   const nextFunction = () => {
@@ -36,17 +51,21 @@ const NewsEntry = ({ i, entry, setScrollTrigger }) => {
           {entry.date ? dateFormatted(entry.date) : ""}
         </div>
         <div className={styles.newsContent}>
-          <div className={styles.headline}>
-            <PortableText content={entry.headline} />
-          </div>
-          <div className={styles.text}>
-            <PortableText content={entry.text} />
-          </div>
+          {entry.headline && (
+            <div className={styles.headline}>
+              <PortableText content={entry.headline} />
+            </div>
+          )}
+          {entry.text && (
+            <div className={styles.text}>
+              <PortableText content={entry.text} />
+            </div>
+          )}
 
           {entry.project?.slug && (
             <div
               className={styles.link}
-              onClick={() => showProject(entry.project.slug.current)}
+              onClick={() => scrollTriggerFct(entry.project.slug.current)}
             >
               <span>Show Project</span>
             </div>

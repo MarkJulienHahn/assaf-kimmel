@@ -3,7 +3,7 @@ import './globals.css'
 
 
 export const metadata: Metadata = {
-  title: 'STUDIO ASSAF KIMMEL',
+  title: 'ASSAF KIMMEL STUDIO',
   description: 'Assaf Kimmel is an architect based in Berlin, working across the fields of architecture, installation art, fashion, performance and speculative design.',
 }
 

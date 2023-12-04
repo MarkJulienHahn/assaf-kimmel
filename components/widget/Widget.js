@@ -31,7 +31,7 @@ const Widget = ({
   setScrollTrigger,
   slug,
   setLockScroll,
-  isTouchDevice
+  isTouchDevice,
 }) => {
   const [widgetDimensions, setWidgetDimensions] = useState({
     width: 174,
@@ -45,7 +45,6 @@ const Widget = ({
   const [extended, setExtended] = useState(false);
   const [hovered, setHovered] = useState(false);
 
-
   const array = [
     <Menu key={1} setIndex={setIndex} />,
     <Intro1 key={2} setIndex={setIndex} index={index} />,
@@ -58,6 +57,7 @@ const Widget = ({
       hovered={hovered}
       setHovered={setHovered}
       setScrollTrigger={setScrollTrigger}
+      setLockScroll={setLockScroll}
     />,
     <ProjectWidget
       key={5}

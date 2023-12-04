@@ -13,7 +13,6 @@ const ProjectSwiperInnerDesktop = ({
   sliderTrigger,
   translation,
   length,
-  slug,
 }) => {
   const [active, setActive] = useState(true);
   const [last, setLast] = useState(false);

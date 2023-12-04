@@ -14,6 +14,7 @@ const News = ({
   setHovered,
   news,
   setScrollTrigger,
+  setLockScroll
 }) => {
   const { windowWidth } = useWindowDimensions();
   const height = use100vh();
@@ -57,18 +58,19 @@ const News = ({
           <NewsEntry entry={news[0]} setScrollTrigger={setScrollTrigger} />
         </div>
 
-        {extended && (
-          <div className={styles.innerBottom}>
-            {news.map((entry, i) => (
-              <NewsEntry
-                key={i}
-                i={i}
-                entry={entry}
-                setScrollTrigger={setScrollTrigger}
-              />
+        <div className={styles.innerBottomWrapper}>
+          {extended &&
+            news.map((entry, i) => (
+              <div key={i} className={styles.innerBottom}>
+                <NewsEntry
+                  i={i}
+                  entry={entry}
+                  setScrollTrigger={setScrollTrigger}
+                  setLockScroll={setLockScroll}
+                />
+              </div>
             ))}
-          </div>
-        )}
+        </div>
 
         {hovered && !extended && (
           <div className={styles.extendArrowDown}>

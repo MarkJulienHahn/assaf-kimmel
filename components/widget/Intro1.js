@@ -10,7 +10,7 @@ const Intro1 = ({ setIndex, index }) => {
     setTimeout(nextFct, 1000);
   });
 
-  return <div>STUDIO&nbsp;ASSAF&nbsp;KIMMEL</div>;
+  return <div>ASSAF&nbsp;KIMMEL&nbsp;STUDIO</div>;
 };
 
 export default Intro1;
