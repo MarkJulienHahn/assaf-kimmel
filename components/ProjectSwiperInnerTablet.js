@@ -131,7 +131,7 @@ const ProjectSwiperInnerTablet = ({
           position: "relative",
           transformOrigin: "bottom left",
           background: !imgLoaded
-            ? image.asset.metadata.palette.vibrant.background
+            ? "lightgrey"
             : "none",
           marginLeft: active ? "var(--space-M)" : "5px",
         }}

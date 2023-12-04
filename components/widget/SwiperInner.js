@@ -46,7 +46,7 @@ const SwiperInner = ({
         style={{
           objectFit: "contain",
           objectPosition: "top",
-          background: image.asset.metadata.palette.vibrant.background,
+          background: "lightgrey"
         }}
         // ref={ref}
       />

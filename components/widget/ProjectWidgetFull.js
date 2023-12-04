@@ -66,7 +66,7 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
                   height: `${
                     300 / image.asset.metadata.dimensions.aspectRatio
                   }px`,
-                  background: image.asset.metadata.palette.vibrant.background,
+                  background: "lightgrey"
                 }}
                 key={i}
               >

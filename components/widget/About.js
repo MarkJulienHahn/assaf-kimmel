@@ -36,7 +36,7 @@ const About = ({ about }) => {
           <div
             className={styles.aboutImage}
             style={{
-              background: about.image.asset.metadata.palette.vibrant.background,
+              background: "lightgrey"
             }}
           >
             <Image fill src={urlFor(about.image.asset.url).width(500).url()} />

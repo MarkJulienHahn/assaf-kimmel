@@ -75,7 +75,7 @@ const ProjectMobileSwiper = ({
             100 / image.asset.metadata.dimensions.aspectRatio
           }vw - 2*var(--space-S))`,
           background: !loaded
-            ? "white"
+            ? "lightgrey"
             : // ? "blue"
               "transparent",
           zIndex: "10",
