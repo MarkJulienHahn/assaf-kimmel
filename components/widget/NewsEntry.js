@@ -3,10 +3,24 @@ import styles from "./widget.module.css";
 
 import SwiperInner from "./SwiperInner";
 
-import PortableText from "react-portable-text";
+import { PortableText } from "@portabletext/react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+
+const serializers = {
+  marks: {
+    link: ({ children, value }) => {
+      const rel = value.blank ? "noreferrer noopener" : undefined;
+      return (
+        <a href={value.href} target="_blank" rel={rel}>
+          {children}
+        </a>
+      );
+    },
+  },
+};
+
 const NewsEntry = ({ i, entry, setScrollTrigger, setLockScroll }) => {
   const [swiperIndex, setSwiperIndex] = useState(0);
   const [next, setNext] = useState(false);
@@ -53,12 +67,12 @@ const NewsEntry = ({ i, entry, setScrollTrigger, setLockScroll }) => {
         <div className={styles.newsContent}>
           {entry.headline && (
             <div className={styles.headline}>
-              <PortableText content={entry.headline} />
+              <PortableText value={entry.headline} />
             </div>
           )}
           {entry.text && (
             <div className={styles.text}>
-              <PortableText content={entry.text} />
+              <PortableText value={entry.text} components={serializers} />
             </div>
           )}
 
@@ -74,38 +88,42 @@ const NewsEntry = ({ i, entry, setScrollTrigger, setLockScroll }) => {
           {entry.images.length && (
             <div>
               <div className={styles.images}>
-                <div className={styles.swiperControls}>
-                  {entry.images.length > 1 && (
-                    <>
-                      <div
-                        className={styles.swiperControlLeft}
-                        onClick={prevFunction}
-                      ></div>
-
-                      <div
-                      // muss da bleiben für Selection in Safari ..
-                      ></div>
-                    </>
-                  )}
-                </div>
                 {entry.images.length > 1 ? (
-                  <div className={styles.swiperControlRight}>
-                    <Swiper spaceBetween={5} slidesPerView={"auto"}>
-                      {entry.images.map((image, i) => (
-                        <SwiperSlide key={i}>
-                          <SwiperInner
-                            image={image}
-                            setSwiperIndex={setSwiperIndex}
-                            i={i + 1}
-                            swiperIndex={swiperIndex}
-                            next={next}
-                            prev={prev}
-                          />
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                  </div>
+                  // <div className={styles.swiperControlRight}>
+                  <Swiper spaceBetween={5} slidesPerView={"auto"} loop={true}>
+                    <div className={styles.swiperControls}>
+                      {entry.images.length > 1 && (
+                        <>
+                          <div
+                            className={styles.swiperControlLeft}
+                            onClick={prevFunction}
+                            style={{
+                              pointerEvents: swiperIndex == 0 ? "none" : "",
+                            }}
+                          ></div>
+
+                          <div
+                            className={styles.swiperControlRight}
+                            onClick={nextFunction}
+                          ></div>
+                        </>
+                      )}
+                    </div>
+                    {entry.images.map((image, i) => (
+                      <SwiperSlide key={i}>
+                        <SwiperInner
+                          image={image}
+                          setSwiperIndex={setSwiperIndex}
+                          i={i + 1}
+                          swiperIndex={swiperIndex}
+                          next={next}
+                          prev={prev}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                 ) : (
+                  // </div>
                   <Swiper spaceBetween={5} slidesPerView={"auto"}>
                     {entry.images.map((image, i) => (
                       <SwiperSlide key={i}>

@@ -98,6 +98,10 @@ h3 {
   margin: 0;
 }
 
+em {
+  font-style: normal;
+}
+
 .swiper-slide {
   width: auto !important;
 }

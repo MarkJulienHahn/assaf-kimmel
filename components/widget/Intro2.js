@@ -18,7 +18,7 @@ const Intro2 = ({ setIndex, index, about }) => {
 
   return (
     <div className={styles.information}>
-      <div>STUDIO&nbsp;ASSAF&nbsp;KIMMEL</div>
+      <div>ASSAF&nbsp;KIMMEL&nbsp;STUDIO</div>
       {about?.loadingText && (
         <div>
           <PortableText content={about.loadingText} />

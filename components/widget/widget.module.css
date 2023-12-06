@@ -190,6 +190,7 @@
 
 .swiperControls {
   position: absolute;
+  top: 0;
   height: 200px;
   width: 400px;
   display: flex;
@@ -206,13 +207,17 @@
 }
 
 .swiperControlLeft {
+  height: 100%;
+  width: 50%;
   cursor: url("../../public/images/arrow-left.svg"), auto;
   pointer-events: auto;
 }
 
 .swiperControlRight {
+  height: 100%;
+  width: 50%;
   cursor: url("../../public/images/arrow-right.svg"), auto;
-  /* pointer-events: auto; */
+  pointer-events: auto;
 }
 
 .selectableText {
