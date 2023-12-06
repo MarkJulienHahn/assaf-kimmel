@@ -48,7 +48,7 @@ const ProjectSwiperInnerDesktop = ({
   useEffect(() => {
     i == swiperIndex ? setActive(true) : setActive(false);
     i == length - 1 ? setLast(true) : setLast(false);
-    setTimeout(currentFct, 700);
+    setTimeout(currentFct, 900);
   }, [swiperIndex, windowWidth]);
 
   useEffect(() => {
