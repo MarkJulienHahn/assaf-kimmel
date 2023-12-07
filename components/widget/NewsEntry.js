@@ -89,7 +89,7 @@ const NewsEntry = ({ i, entry, setScrollTrigger, setLockScroll }) => {
             <div>
               <div className={styles.images}>
                 {entry.images.length > 1 ? (
-                  // <div className={styles.swiperControlRight}>
+
                   <Swiper spaceBetween={5} slidesPerView={"auto"} loop={true}>
                     <div className={styles.swiperControls}>
                       {entry.images.length > 1 && (
