@@ -39,7 +39,9 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
               </div>
             </div>
             <div className={styles.projectTextFull}>
-              <PortableText content={widgetContent.description} />
+              {widgetContent.description && (
+                <PortableText content={widgetContent.description} />
+              )}
             </div>
           </div>
 
@@ -66,7 +68,7 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
                   height: `${
                     300 / image.asset.metadata.dimensions.aspectRatio
                   }px`,
-                  background: "lightgrey"
+                  background: "lightgrey",
                 }}
                 key={i}
               >
@@ -84,7 +86,9 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
           style={{ maxHeight: `calc(${height}px - 130px` }}
         >
           <div className={styles.projectTextMobile}>
-            <PortableText content={widgetContent.description} />
+            {widgetContent.description && (
+              <PortableText content={widgetContent.description} />
+            )}
           </div>
           {widgetContent.credits ? (
             <div className={styles.projectCreditsMobile}>
@@ -100,7 +104,10 @@ const ProjectWidgetFull = ({ widgetContent, setIndex }) => {
           )}
         </div>
       </div>
-      <div className={styles.extendArrowUp}>
+      <div
+        className={styles.extendArrowUp}
+        style={{ display: windowWidth <= 600 ? "flex" : "none" }}
+      >
         <span onClick={() => setIndex(4)}>
           <SlArrowUp />
         </span>

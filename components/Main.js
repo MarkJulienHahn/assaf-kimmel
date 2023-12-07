@@ -43,7 +43,7 @@ const Main = ({ projects, news, about, contact, imprint, slug }) => {
 
   useEffect(() => {
     !delay && inView && setIndex(3);
-    !inView && setIndex(4);
+    // !inView && setIndex(4);
   }, [inView]);
 
   useEffect(() => {

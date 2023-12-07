@@ -31,7 +31,7 @@
 .outer {
   display: flex;
   animation: fadeIn 0.2s ease-in;
-  animation-delay: 0.2s;
+  animation-delay: 0.5s;
   animation-fill-mode: forwards;
   opacity: 0;
   border-bottom: var(--space-S);
@@ -294,6 +294,13 @@
   opacity: 0;
 }
 
+.projectTextFull {
+  animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
 .projectTextFull p {
   padding-bottom: 25px;
   font-family: "ProtestMono";
@@ -310,7 +317,7 @@
   overflow-x: hidden;
   overscroll-behavior: none;
   max-height: calc(100vh - 4 * var(--space-S));
-  scrollbar-width: 0;
+  scrollbar-width: none;
   width: 300px;
   padding-right: var(--space-S);
 }
@@ -347,7 +354,8 @@
 }
 
 .projectTitle {
-  white-space: nowrap;
+  text-wrap: balance;
+  width: 210px;
 }
 
 .projectImage {
@@ -372,6 +380,10 @@
   overflow: scroll;
   scrollbar-width: none;
   max-height: calc(100vh - 50px);
+  animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.5s !important;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 .aboutContent div p {
@@ -398,6 +410,9 @@
 
 .contactWrapper {
   animation: fadeIn 0.2s ease-in;
+  animation-delay: 0.5s !important;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 .contactRow {
@@ -449,7 +464,7 @@
   overscroll-behavior: contain;
   height: 100%;
   animation: fadeIn 0.2s ease-in;
-  animation-delay: 0.3s;
+  animation-delay: 0.8s;
   animation-fill-mode: forwards;
   opacity: 0;
   cursor: pointer;
@@ -517,7 +532,7 @@
 .imprintContent {
   width: 400px;
   animation: fadeIn 0.5s ease;
-  animation-delay: 0.2s;
+  animation-delay: 0.5s;
   animation-fill-mode: forwards;
   opacity: 0;
   max-height: calc(100vh - 4 * var(--space-S));
@@ -605,6 +620,7 @@
   .imprintContent {
     max-height: unset;
     width: calc(100vw - 4 * var(--space-S));
+
   }
   .information {
     display: block;

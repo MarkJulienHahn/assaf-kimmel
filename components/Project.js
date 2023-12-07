@@ -94,13 +94,16 @@ const Project = ({
       !delay && setIndex(4);
   }, [swiperIndex]);
 
+  const scrollFct = () => {
+    anchorRef.current.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
+  };
+
   useEffect(() => {
-    scrollTrigger == project.slug.current &&
-      anchorRef.current.scrollIntoView({
-        block: "start",
-        behavior: "smooth",
-      }) &&
-      setIndex(4);
+    scrollTrigger == project.slug.current && setTimeout(scrollFct, 500);
+    setIndex(4);
   }, [scrollTrigger]);
 
   useEffect(() => {
@@ -115,6 +118,8 @@ const Project = ({
       window.removeEventListener("resize", handleResize);
     };
   }, [isTouchDevice]);
+
+  console.log(scrollTrigger, project.slug.current)
 
   return (
     <>
