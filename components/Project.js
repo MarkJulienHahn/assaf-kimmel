@@ -90,8 +90,8 @@ const Project = ({
   }, [translation]);
 
   useEffect(() => {
-    !delay && anchorRef.current.scrollIntoView({ behavior: "smooth" }),
-      !delay && setIndex(4);
+    !delay && anchorRef.current.scrollIntoView({ behavior: "smooth" });
+    !delay && setIndex(4);
   }, [swiperIndex]);
 
   const scrollFct = () => {
@@ -103,7 +103,7 @@ const Project = ({
 
   useEffect(() => {
     scrollTrigger == project.slug.current && setTimeout(scrollFct, 500);
-    setIndex(4);
+    // setIndex(4);
   }, [scrollTrigger]);
 
   useEffect(() => {
@@ -119,7 +119,7 @@ const Project = ({
     };
   }, [isTouchDevice]);
 
-  console.log(scrollTrigger, project.slug.current)
+  console.log(scrollTrigger, project.slug.current);
 
   return (
     <>
