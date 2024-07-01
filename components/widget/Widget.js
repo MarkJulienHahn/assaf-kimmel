@@ -130,8 +130,8 @@ const Widget = ({
     <div
       className={`${styles.wrapper} ${index == 3 ? styles.wrapperNews : ""}`}
       style={{ width: widgetDimensions.width, height: widgetDimensions.height }}
-      onMouseEnter={!extended ? mouseEnterFct : () => {}}
-      onMouseLeave={!extended && windowWidth > 1400 ? mouseLeaveFct : () => {}}
+      // onMouseEnter={!extended ? mouseEnterFct : () => {}}
+      // onMouseLeave={!extended && windowWidth > 1400 ? mouseLeaveFct : () => {}}
     >
       {index != 1 && index != 2 && (
         <div

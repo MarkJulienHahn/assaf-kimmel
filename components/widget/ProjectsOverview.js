@@ -15,7 +15,12 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const ProjectsOverview = ({ projects, setIndex, setScrollTrigger, setLockScroll }) => {
+const ProjectsOverview = ({
+  projects,
+  setIndex,
+  setScrollTrigger,
+  setLockScroll,
+}) => {
   const [left, setLeft] = useState(false);
   const [right, setRight] = useState(false);
   const { windowWidth } = useWindowDimensions();
@@ -47,6 +52,8 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger, setLockScroll 
     setTimeout(dirCleanUp, 100);
   }, [left, right]);
 
+  console.log(right);
+
   return (
     <>
       <div className={styles.overviewNextButton} onClick={() => setRight(true)}>
@@ -65,7 +72,11 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger, setLockScroll 
       >
         <div className={styles.left}></div>
         <div className={styles.overviewInner}>
-          <Swiper spaceBetween={0} slidesPerView={"auto"}>
+          <Swiper
+            spaceBetween={0}
+            slidesPerView={3}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
             {projects.map((project, i) => (
               <SwiperSlide key={i}>
                 <ProjectOverviewRow
@@ -100,34 +111,36 @@ const ProjectsOverview = ({ projects, setIndex, setScrollTrigger, setLockScroll 
                   )}
                 </div>
               </div>
-              <div className={styles.overviewImagesMobile}>
-                <Swiper spaceBetween={5} slidesPerView={"auto"}>
-                  {project.images.map((image, i) => (
-                    <SwiperSlide key={i}>
-                      <div
-                        style={{
-                          height: "100px",
-                          width: `${
-                            image.asset.metadata.dimensions.aspectRatio * 100
-                          }px`,
-                          position: "relative",
-                        }}
-                      >
-                        <Image
-                          fill
-                          src={urlFor(image.asset.url)
-                            .width(400)
-                            .quality(50)
-                            .url()}
-                          alt={
-                            image.alt ? image.alt : "An Image by Assaf Kimmel"
-                          }
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>{" "}
+              {windowWidth <= 600 && (
+                <div className={styles.overviewImagesMobile}>
+                  <Swiper spaceBetween={5} slidesPerView={"auto"}>
+                    {project.images.map((image, i) => (
+                      <SwiperSlide key={i}>
+                        <div
+                          style={{
+                            height: "100px",
+                            width: `${
+                              image.asset.metadata.dimensions.aspectRatio * 100
+                            }px`,
+                            position: "relative",
+                          }}
+                        >
+                          <Image
+                            fill
+                            src={urlFor(image.asset.url)
+                              .width(400)
+                              .quality(50)
+                              .url()}
+                            alt={
+                              image.alt ? image.alt : "An Image by Assaf Kimmel"
+                            }
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              )}
             </div>
           ))}
         </div>

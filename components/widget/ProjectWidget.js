@@ -18,8 +18,8 @@ const ProjectWidget = ({ widgetContent, setIndex, hovered, setHovered }) => {
   return (
     <div
       className={styles.outerProjSmall}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      // onMouseEnter={() => setHovered(true)}
+      // onMouseLeave={() => setHovered(false)}
     >
       <div
         className={styles.left}

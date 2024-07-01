@@ -119,8 +119,6 @@ const Project = ({
     };
   }, [isTouchDevice]);
 
-  console.log(scrollTrigger, project.slug.current);
-
   return (
     <>
       <div className={styles.sliderOuter}>

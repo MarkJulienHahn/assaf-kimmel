@@ -35,7 +35,7 @@ const ProjectOverviewRow = ({
 
   const scrollTriggerFct = () => {
     setLockScroll(false);
-    setIndex(4)
+    setIndex(4);
     setTimeout(scrollTriggerCallback, 1000);
     setTimeout(triggerCleanup, 2000);
   };
