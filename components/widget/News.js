@@ -34,6 +34,8 @@ const News = ({
     windowWidth <= 1400 && setHovered(true);
   }, []);
 
+  console.log(hovered, extended)
+
   return (
     <div
       className={styles.outer}
@@ -72,7 +74,7 @@ const News = ({
             ))}
         </div>
 
-        {hovered && !extended && (
+        {!extended && (
           <div className={styles.extendArrowDown}>
             <span onClick={() => setExtended(!extended)}>
               <SlArrowDown />
