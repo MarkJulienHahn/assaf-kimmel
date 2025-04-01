@@ -59,7 +59,7 @@ const ProjectOverviewRow = ({
         </div>
       </div>
       <div className={styles.overviewImagesWrapper}>
-        {project.images.map((image, i) => (
+        {project.images?.map((image, i) => (
           <>
             {image.asset.metadata.dimensions.aspectRatio > 1 ? (
               <div

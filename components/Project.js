@@ -119,8 +119,6 @@ const Project = ({
     };
   }, [isTouchDevice]);
 
-  console.log(project);
-
   return (
     <>
       <div className={styles.sliderOuter}>
@@ -140,7 +138,7 @@ const Project = ({
           ></div>
           <div
             className={
-              swiperIndex < project.images.length - 1 && styles.rightArrow
+              swiperIndex < project.images?.length - 1 && styles.rightArrow
             }
             onClick={
               !sliderDelay ? () => handleSliderTrigger("right") : () => {}
