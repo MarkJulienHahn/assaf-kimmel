@@ -34,8 +34,6 @@ const News = ({
     windowWidth <= 1400 && setHovered(true);
   }, []);
 
-  console.log(hovered, extended)
-
   return (
     <div
       className={styles.outer}

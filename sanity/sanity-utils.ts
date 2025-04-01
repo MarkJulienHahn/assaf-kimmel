@@ -16,8 +16,7 @@ export async function getNews() {
 
 export async function getProjects() {
   return client.fetch(
-    groq`*[_type == "projects"]|order(orderRank){"images": images[]{alt, "asset": asset->{...}
-  }, shortDescription, twoLineDescription, description, title, credits, slug}`
+    groq`*[_type == "projects"]|order(orderRank){video, "images": images[]{alt, "asset": asset->{...}}, shortDescription, twoLineDescription, description, title, credits, slug}`
   );
 }
 

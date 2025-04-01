@@ -72,14 +72,22 @@ export default defineType({
       of: [{ name: "infos", title: "Infos", type: "object", fields: [{ name: "job", title: "Job", type: "string" }, { name: "name", title: "Name", type: "string" }] }]
     },
 
+    { name: "video", title: "Video", type: "object", description: "Copy the embed link of the vimeo video – it should have this structure: https://player.vimeo.com/video/1071192095. As soon as this field is filled the image slider will be hidden and only the video is visible", fields: [{ name: "url", type: "string" }] },
+
 
     {
-      name: "images", title: "Images", type: "array", of: [{
-        name: "image",
-        type: "image",
-        fields: [{ name: "alt", title: "Alt", type: "string" }],
+      name: "images",
+      title: "Images",
+      type: "array",
+      of: [
+        {
+          name: "image",
+          type: "image",
+          fields: [
+            { name: "alt", title: "Alt", type: "string" }],
 
-      }]
+        },
+      ]
     },
 
 

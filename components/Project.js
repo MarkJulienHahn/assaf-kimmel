@@ -119,6 +119,8 @@ const Project = ({
     };
   }, [isTouchDevice]);
 
+  console.log(project);
+
   return (
     <>
       <div className={styles.sliderOuter}>
@@ -161,41 +163,52 @@ const Project = ({
             ref={wrapperRef}
             style={{ display: "flex", alignItems: "flex-end" }}
           >
-            {project.images.map((image, i) => (
-              <>
-                <div className={styles.desktop}>
-                  <ProjectSwiperInnerDesktop
-                    key={i}
-                    image={image}
-                    swiperIndex={swiperIndex}
-                    setSwiperIndex={setSwiperIndex}
-                    setTranslation={setTranslation}
-                    translation={translation}
-                    sliderTrigger={sliderTrigger}
-                    length={project.images.length}
-                    i={i}
-                    slug={project.slug.current}
-                  />
-                </div>
-                <div className={styles.tablet}>
-                  <ProjectSwiperInnerTablet
-                    key={i}
-                    image={image}
-                    swiperIndex={swiperIndex}
-                    setSwiperIndex={setSwiperIndex}
-                    setTranslation={setTranslation}
-                    translation={translation}
-                    sliderTrigger={sliderTrigger}
-                    length={project.images.length}
-                    i={i}
-                  />
-                </div>
-              </>
-            ))}
+            {!project.video ? (
+              project.images.map((image, i) => (
+                <>
+                  <div className={styles.desktop}>
+                    <ProjectSwiperInnerDesktop
+                      key={i}
+                      image={image}
+                      swiperIndex={swiperIndex}
+                      setSwiperIndex={setSwiperIndex}
+                      setTranslation={setTranslation}
+                      translation={translation}
+                      sliderTrigger={sliderTrigger}
+                      length={project.images.length}
+                      i={i}
+                      slug={project.slug.current}
+                    />
+                  </div>
+                  <div className={styles.tablet}>
+                    <ProjectSwiperInnerTablet
+                      key={i}
+                      image={image}
+                      swiperIndex={swiperIndex}
+                      setSwiperIndex={setSwiperIndex}
+                      setTranslation={setTranslation}
+                      translation={translation}
+                      sliderTrigger={sliderTrigger}
+                      length={project.images.length}
+                      i={i}
+                    />
+                  </div>
+                </>
+              ))
+            ) : (
+              <div className={styles.videoContainer}>
+                <iframe
+                  src={`${project.video.url}?title=0&byline=0&portrait=0`}
+                  frameborder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.index}>
-          0{swiperIndex + 1} 0{project.images.length}
+          0{swiperIndex + 1} 0{!project.video ? project.images.length : "1"}
         </div>
       </div>
     </>

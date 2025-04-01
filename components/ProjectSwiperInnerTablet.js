@@ -28,13 +28,14 @@ const ProjectSwiperInnerTablet = ({
   const { windowWidth, windowHeight } = useWindowDimensions();
 
   const getImageWidth = (height) => {
-    return height * image.asset.metadata.dimensions.aspectRatio;
+    return height * image.asset?.metadata?.dimensions.aspectRatio;
   };
   const getUrl = () => {
-    return urlFor(image.asset.url)
-      .width(Math.floor(windowWidth * 0.9))
-      .quality(50)
-      .url();
+    if (image.asset?.url)
+      return urlFor(image?.asset?.url)
+        .width(Math.floor(windowWidth * 0.9))
+        .quality(50)
+        .url();
   };
 
   // SWIPER FUNCTIONS
@@ -57,6 +58,10 @@ const ProjectSwiperInnerTablet = ({
   }, []);
 
   const landscapeAction = () => {
+    if (!image.asset) {
+      return;
+    }
+
     if (
       image.asset.metadata.dimensions.aspectRatio - windowWidth / windowHeight <
       0
@@ -123,16 +128,14 @@ const ProjectSwiperInnerTablet = ({
             ? `${landscape}vh`
             : `${
                 (getImageWidth(landscape) * 0.3) /
-                image.asset.metadata.dimensions.aspectRatio
+                image.asset?.metadata.dimensions.aspectRatio
               }vh`,
           width: active
             ? `${getImageWidth(landscape)}vh`
             : `${getImageWidth(landscape) * 0.3}vh`,
           position: "relative",
           transformOrigin: "bottom left",
-          background: !imgLoaded
-            ? "lightgrey"
-            : "none",
+          background: !imgLoaded ? "lightgrey" : "none",
           marginLeft: active ? "var(--space-M)" : "5px",
         }}
         ref={ref}
