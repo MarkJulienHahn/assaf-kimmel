@@ -111,13 +111,13 @@ const Project = ({
     Object.assign(project, { i: i });
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
+  // useEffect(() => {
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isTouchDevice]);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [isTouchDevice]);
 
   return (
     <>

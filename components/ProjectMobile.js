@@ -58,35 +58,51 @@ const Project = ({
   return (
     <>
       <div
-        // className={styles.sliderOuter}
         style={{
           marginTop: aspectRatio > 1 ? "200px" : "0px",
         }}
         ref={ref}
       >
         <div className={styles.sliderWrapper} ref={anchorRef}>
-          {/* <div className={styles.anchor}></div> */}
-          <Swiper
-            spaceBetween={5}
-            slidesPerView={"auto"}
-            onSlideChange={handleSlideChange}
-          >
-            {project.images.map((image, i) => (
-              <SwiperSlide key={i}>
-                <ProjectMobileSwiper
-                  image={image}
-                  i={i}
-                  setSwiperIndex={setSwiperIndex}
-                  aspectRatio={aspectRatio}
-                  windowWidth={windowWidth}
-                  nextImageIndex={nextImageIndex}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {!project.video ? (
+            <Swiper
+              spaceBetween={5}
+              slidesPerView={"auto"}
+              onSlideChange={handleSlideChange}
+            >
+              {project.images.map((image, i) => (
+                <SwiperSlide key={i}>
+                  <ProjectMobileSwiper
+                    image={image}
+                    i={i}
+                    setSwiperIndex={setSwiperIndex}
+                    aspectRatio={aspectRatio}
+                    windowWidth={windowWidth}
+                    nextImageIndex={nextImageIndex}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div
+              style={{
+                marginTop: "250px",
+                height: 0,
+                paddingBottom: "56.25%",
+              }}
+              className={styles.videoContainer}
+            >
+              <iframe
+                src={`${project.video.url}?title=0&byline=0&portrait=0`}
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          )}
         </div>
         <div className={styles.index}>
-          0{swiperIndex + 1} 0{project.images.length}
+          0{swiperIndex + 1} 0{!project.video ? project.images.length : "1"}
         </div>
       </div>
     </>
